@@ -1,0 +1,7 @@
+# Cambiar el nombre del prompt
+ghci> :set prompt Krtu_Shell>
+
+# Para compilar
+ghci> :l baby
+[1 of 1] Compiling Main
+Ok, modules loaded: Main.

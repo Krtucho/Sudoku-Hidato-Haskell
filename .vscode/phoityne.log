@@ -1,0 +1,611 @@
+2022-06-05 01:55:34.351970400000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 01:57:01.335226500000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 02:02:57.727196000000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 02:10:01.982509900000 [$pid(ThreadId 4)] CRITICAL REQUEST - invalid HANDLE. eof.
+2022-06-05 02:19:31.278642500000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 02:19:31.589839500000 [$pid(ThreadId 5)] WARNING APP - InitState EvaluateRequest (EvaluateRequest {seqEvaluateRequest = 3, typeEvaluateRequest = "request", commandEvaluateRequest = "evaluate", argumentsEvaluateRequest = EvaluateRequestArguments {expressionEvaluateRequestArguments = "H>>=", frameIdEvaluateRequestArguments = Nothing, contextEvaluateRequestArguments = Just "repl"}}) not supported. nop.
+2022-06-05 02:40:50.243402900000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 02:58:30.230230900000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 02:59:49.838568000000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 02:59:49.867491200000 [$pid(ThreadId 5)] WARNING APP - InitState EvaluateRequest (EvaluateRequest {seqEvaluateRequest = 3, typeEvaluateRequest = "request", commandEvaluateRequest = "evaluate", argumentsEvaluateRequest = EvaluateRequestArguments {expressionEvaluateRequestArguments = "H>>=", frameIdEvaluateRequestArguments = Nothing, contextEvaluateRequestArguments = Just "repl"}}) not supported. nop.
+2022-06-05 03:01:43.182734400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 2, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "Configuration read.\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.186722400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":2,"type":"event","event":"output","body":{"category":"stdout","output":"Configuration read.\n"}}
+2022-06-05 03:01:43.188718000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.180738800000 [$pid(ThreadId 5)] DEBUG APP - ["stack","ghci","--test","--no-load","--with-ghc=haskell-dap","--no-build","--main-is","TARGET","--ghci-options","-fprint-evld-with-show"]
+2022-06-05 03:01:43.190713200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.193704100000 [$pid(ThreadId 5)] INFO APP - can not use haskell-dap. deleting "--with-ghc=haskell-dap"
+2022-06-05 03:01:43.194702600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.195699200000 [$pid(ThreadId 5)] INFO APP - "--with-ghc" option not found. adding "--with-ghc=ghci-dap"
+2022-06-05 03:01:43.213651900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 3, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "console", outputOutputEventBody = "Starting GHCi.\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.214648100000 [$pid(ThreadId 5)] DEBUG APP - ghci initial prompt [> ].
+2022-06-05 03:01:43.218637500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":3,"type":"event","event":"output","body":{"category":"console","output":"Starting GHCi.\n"}}
+2022-06-05 03:01:43.221630200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.222627300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.224622000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.225620500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 4, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stderr", outputOutputEventBody = "Wait for a moment.\n\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.238584400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":4,"type":"event","event":"output","body":{"category":"stderr","output":"Wait for a moment.\n\n"}}
+2022-06-05 03:01:43.242574200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.243571300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.244568900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.245567000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 5, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "[DEBUG][APP] [\"stack\",\"ghci\",\"--test\",\"--no-load\",\"--with-ghc=haskell-dap\",\"--no-build\",\"--main-is\",\"TARGET\",\"--ghci-options\",\"-fprint-evld-with-show\"]\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.251550600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":5,"type":"event","event":"output","body":{"category":"stdout","output":"[DEBUG][APP] [\"stack\",\"ghci\",\"--test\",\"--no-load\",\"--with-ghc=haskell-dap\",\"--no-build\",\"--main-is\",\"TARGET\",\"--ghci-options\",\"-fprint-evld-with-show\"]\n"}}
+2022-06-05 03:01:43.271497500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.272496400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.276485400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.277481500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 6, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "[INFO][APP] can not use haskell-dap. deleting \"--with-ghc=haskell-dap\"\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.282467600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":6,"type":"event","event":"output","body":{"category":"stdout","output":"[INFO][APP] can not use haskell-dap. deleting \"--with-ghc=haskell-dap\"\n"}}
+2022-06-05 03:01:43.289449200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.293439500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.294435700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.295434700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 7, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "[INFO][APP] \"--with-ghc\" option not found. adding \"--with-ghc=ghci-dap\"\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.300419800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":7,"type":"event","event":"output","body":{"category":"stdout","output":"[INFO][APP] \"--with-ghc\" option not found. adding \"--with-ghc=ghci-dap\"\n"}}
+2022-06-05 03:01:43.304410100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.311390800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.313386900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.314384000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 8, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "console", outputOutputEventBody = "CWD: D:\\Escuela\\Computer Science\\3er anno\\Programacion Declarativa\\2021\\Haskell\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.320366700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":8,"type":"event","event":"output","body":{"category":"console","output":"CWD: D:\\Escuela\\Computer Science\\3er anno\\Programacion Declarativa\\2021\\Haskell\n"}}
+2022-06-05 03:01:43.326350800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.328346900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.353280300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.354277800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 9, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "console", outputOutputEventBody = "CMD: stack ghci --with-ghc=ghci-dap --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.367243100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":9,"type":"event","event":"output","body":{"category":"console","output":"CMD: stack ghci --with-ghc=ghci-dap --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show\n"}}
+2022-06-05 03:01:43.371231500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.372228700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.377218400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.401152400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 10, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "console", outputOutputEventBody = "\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.405140800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":10,"type":"event","event":"output","body":{"category":"console","output":"\n"}}
+2022-06-05 03:01:43.410128200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.411126800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.413121000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.415116100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 11, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stderr", outputOutputEventBody = "Now, waiting for an initial prompt(\"> \") from ghci.\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.447030300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":11,"type":"event","event":"output","body":{"category":"stderr","output":"Now, waiting for an initial prompt(\"> \") from ghci.\n"}}
+2022-06-05 03:01:43.450022100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.451020100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.453014800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:43.454012400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 12, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "console", outputOutputEventBody = "\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:01:43.459995500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":12,"type":"event","event":"output","body":{"category":"console","output":"\n"}}
+2022-06-05 03:01:43.462987800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:01:43.463986300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:01:43.464983400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:01:44.169107800000 [$pid(ThreadId 7)] INFO WATCH - start watching D:\Escuela\Computer Science\3er anno\Programacion Declarativa\2021\Haskell
+2022-06-05 03:02:02.967073600000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 03:02:02.968071200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 13, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mNo information from Hackage index, updating\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:02.968071200000 [$pid(ThreadId 5)] DEBUG APP - sink start waiting.
+2022-06-05 03:02:02.973057700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":13,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mNo information from Hackage index, updating\u001b[0m\n"}}
+2022-06-05 03:02:02.973057700000 [$pid(ThreadId 5)] DEBUG APP - src start waiting.
+2022-06-05 03:02:02.976049000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:02.977046600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:02.979042200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:02.980038900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 14, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mSelected mirror https://hackage.haskell.org/\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:02.984028300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":14,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mSelected mirror https://hackage.haskell.org/\u001b[0m\n"}}
+2022-06-05 03:02:02.987020100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:02.988018100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:02.989015200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:02.990013300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 15, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mDownloading timestamp\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:02.994999300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":15,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mDownloading timestamp\u001b[0m\n"}}
+2022-06-05 03:02:02.997991600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:02.998988200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:02.999985800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.000982900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 16, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mWaiting to acquire cache lock on C:\\/sr/pantry/hackage/hackage-security-lock\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.006967000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":16,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mWaiting to acquire cache lock on C:\\/sr/pantry/hackage/hackage-security-lock\u001b[0m\n"}}
+2022-06-05 03:02:03.010956400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.011953900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.012951100000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.013957400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 17, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mAcquired cache lock on C:\\/sr/pantry/hackage/hackage-security-lock\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.018935600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":17,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mAcquired cache lock on C:\\/sr/pantry/hackage/hackage-security-lock\u001b[0m\n"}}
+2022-06-05 03:02:03.021927400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.022925000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.024919700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.025916800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 18, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mReleased cache lock on C:\\/sr/pantry/hackage/hackage-security-lock\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.029906600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":18,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mReleased cache lock on C:\\/sr/pantry/hackage/hackage-security-lock\u001b[0m\n"}}
+2022-06-05 03:02:03.033896000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.034895000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.043869000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.044866600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 19, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mNo package index update available, but didn't update cache last time, running now\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.048857800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":19,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mNo package index update available, but didn't update cache last time, running now\u001b[0m\n"}}
+2022-06-05 03:02:03.054840500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.055837600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.056834700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.068802400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 20, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mCalculating hashes to check for hackage-security rebases or filesystem changes\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.074786900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":20,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mCalculating hashes to check for hackage-security rebases or filesystem changes\u001b[0m\n"}}
+2022-06-05 03:02:03.077778300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.078776800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.079774800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.081770000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 21, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mNo old cache found, populating cache from scratch\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.095731900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":21,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mNo old cache found, populating cache from scratch\u001b[0m\n"}}
+2022-06-05 03:02:03.098723200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.099721300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.101716400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.102714900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 22, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mPopulating cache from file size 93800704, hash a8c40e76f8c83fba0815f8b1332d995fbd5d0d61930001354d2339b4b397ceaf\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.113684100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":22,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mPopulating cache from file size 93800704, hash a8c40e76f8c83fba0815f8b1332d995fbd5d0d61930001354d2339b4b397ceaf\u001b[0m\n"}}
+2022-06-05 03:02:03.118680800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.119666800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.127646500000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.128644000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 23, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mPopulating package index cache ...\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.133630100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":23,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mPopulating package index cache ...\u001b[0m\n"}}
+2022-06-05 03:02:03.136622800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.141613000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.142607300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.143603500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 24, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.147592900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":24,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.150585200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.151582300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.152578900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.155583300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 25, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.160558200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":25,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.163550000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.164547500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.164547500000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.166543200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 26, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 1200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.173527100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":26,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 1200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.176515700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.177513300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.178510800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.180505500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 27, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 1600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.184495400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":27,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 1600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.190486900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.191476600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.192473200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.193471300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 28, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 2000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.198459600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":28,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 2000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.205451000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.206437400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.208432600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.209429200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 29, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 2400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.213417200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":29,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 2400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.215411900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.229376200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.230374200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.231370800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 30, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 2800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.236358700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":30,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 2800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.243337600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.245334100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.246329400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.247327400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 31, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 3200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.251316800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":31,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 3200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.256304700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.257302300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.258298900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.260294600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 32, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 3600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.264281600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":32,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 3600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.266276300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.267273900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.268271900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.269268600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 33, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 4000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.275253100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":33,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 4000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.284229900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.285228900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.288226700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.289215900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 34, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 4400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.293206700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":34,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 4400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.297195200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.306172000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.307168600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.308167100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 35, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 4800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.312154200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":35,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 4800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.315147900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.317144400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.318139700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.319135800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 36, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 5200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.428845200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":36,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 5200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.431837000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.432834100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.433831300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.434828400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 37, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 5600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.440812400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":37,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 5600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.442808100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.444802800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.445799900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.446797900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 38, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 6000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.450786400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":38,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 6000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.455773300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.456770000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.457767500000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.458765600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 39, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 6400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.462754000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":39,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 6400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.464749200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.465746800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.466743400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.468739000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 40, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 6800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.472728400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":40,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 6800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.475719800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.476716900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.477714900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.478711600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 41, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 7200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.482700500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":41,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 7200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.484695200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.485693200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.488688300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.489683100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 42, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 7600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.499656500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":42,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 7600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.502647900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.504644400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.505640600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.506638600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 43, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 8000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.511624700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":43,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 8000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.516611200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.517608300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.522596200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.523593300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 44, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 8400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.528578800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":44,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 8400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.530573100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.531570200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.533565300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.534563400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 45, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 8800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.539550800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":45,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 8800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.542542100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.543540200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.544537300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.545533500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 46, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 9200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.549523800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":46,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 9200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.551517500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.552515100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.555507400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.557502500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 47, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 9600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.561491500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":47,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 9600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.564484200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.565480800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.566478000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.572462000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 48, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 10000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.576451400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":48,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 10000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.603380400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.604378500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.605374700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.606371800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 49, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 10400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.610362100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":49,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 10400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.613354300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.614351000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.616344800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.625321100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 50, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 10800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.629311900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":50,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 10800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.632303200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.633300800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.634297400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.636292100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 51, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 11200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.644270400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":51,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 11200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.647263600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.648261200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.649258300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.650255400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 52, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 11600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.655252600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":52,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 11600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.662224000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.663220700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.664217300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.665214900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 53, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 12000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.673194600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":53,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 12000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.677183500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.678181100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.679178200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.680175300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 54, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 12400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.685161800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":54,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 12400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.690151100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.691147300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.692143000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.694137700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 55, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 12800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.698127100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":55,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 12800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.700121800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.701120700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.702116900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.703114000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 56, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 13200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.709099500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":56,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 13200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.711092300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.712090400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.713088000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.714085100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 57, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 13600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.719071100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":57,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 13600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.725055600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.726055500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.727053100000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.728048800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 58, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 14000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.732038200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":58,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 14000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.735030000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.762955200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.763952800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.764949900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 59, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 14400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.772929100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":59,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 14400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.775920500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.776917600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.777915200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.778913700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 60, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 14800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.783900600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":60,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 14800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.785893900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.788899200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.789883800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.791878000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 61, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 15200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.795866900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":61,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 15200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.797861600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.799857200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.800854300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.801851900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 62, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 15600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.806838400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":62,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 15600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.810826900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.811825400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.812821600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.813821900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 63, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 16000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.817809500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":63,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 16000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.819803700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.822796900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.832769900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.833767000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 64, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 16400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.840749100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":64,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 16400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.843740000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.844738500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.845734700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.846732700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 65, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 16800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.859697500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":65,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 16800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.861692200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.862690200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.863687300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.865682500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 66, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 17200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.869671400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":66,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 17200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.873660800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.874657900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.875655000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.876652600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 67, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 17600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.881639100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":67,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 17600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.884630900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.885628500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.887625900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.889617900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 68, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 18000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.893606800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":68,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 18000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.895601900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.896599500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.905576300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.906573000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 69, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 18400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.910562300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":69,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 18400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.913554100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.914553100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.915549300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.916546900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 70, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 18800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.933501100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":70,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 18800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.938494000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.940482700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.941481200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.942476900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 71, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 19200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.947464300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":71,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 19200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.950455700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.951452800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.952449900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.953448900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 72, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 19600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.959432500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":72,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 19600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.961426700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.963421900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.964418500000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.965416600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 73, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 20000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.968407900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":73,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 20000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.972398200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.973395800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.974392900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.976386700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 74, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 20400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:03.980376100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":74,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 20400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:03.982370700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:03.983368300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:03.985363500000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:03.986360600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 75, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 20800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.007305500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":75,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 20800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.011295800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.012292000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.013288200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.014286300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 76, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 21200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.018276100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":76,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 21200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.023265400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.025256800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.026254900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.027252000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 77, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 21600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.031240400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":77,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 21600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.033236100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.034232700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.036227400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.038237400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 78, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 22000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.042212400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":78,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 22000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.045205600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.047199800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.047199800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.050190700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 79, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 22400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.056175200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":79,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 22400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.058169000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.059166600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.060163200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.061161300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 80, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 22800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.081108200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":80,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 22800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.084100900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.086096000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.088099100000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.089087400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 81, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 23200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.093076300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":81,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 23200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.096068100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.097065700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.098063300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.099060400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 82, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 23600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.103049800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":82,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 23600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.107039100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.108037600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.110031900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.111029500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 83, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 24000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.116015000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":83,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 24000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.118010200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.119007300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.122000000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.122997600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 84, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 24400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.129978300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":84,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 24400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.131973000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.132970100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.133967200000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.134964800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 85, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 24800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.151921300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":85,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 24800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.155909300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.156906400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.157904900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.158903000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 86, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 25200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.162892300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":86,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 25200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.180843200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.181840300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.182838300000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.182838300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 87, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 25600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.190817500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":87,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 25600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.192811300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.194806000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.201787600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.202784300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 88, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 26000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.209765900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":88,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 26000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.212759600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.214753800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.215750000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.216748100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 89, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 26400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.225723000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":89,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 26400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.227718200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.228715700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.230710900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.231707500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 90, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 26800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.235696000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":90,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 26800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.240684800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.241681900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.242678100000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.243675700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 91, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 27200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.247664600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":91,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 27200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.250657300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.251654000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.252651600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.255644800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 92, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 27600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.261627900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":92,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 27600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.264620600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.265616800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.266614400000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.274594100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 93, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 28000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.279579700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":93,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 28000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.282572900000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.283577900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.284568000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.285565100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 94, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 28400 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.300524600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":94,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 28400 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.306511500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.307506300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.308503800000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.309500000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 95, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 28800 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.314487000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":95,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 28800 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.316481200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.317478300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.318478700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.321481100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 96, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 29200 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.326455600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":96,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 29200 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.328449800000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.330444500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.331441600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.332438700000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 97, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 29600 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.336428100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":97,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 29600 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.340418400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.341415100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.342412600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.343409800000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 98, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mProcessed 30000 cabal files\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.347400100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":98,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mProcessed 30000 cabal files\u001b[0m\n"}}
+2022-06-05 03:02:04.350391400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.351389500000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.352386600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.355379300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 99, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mFailed populating package index cache\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.364354700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":99,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mFailed populating package index cache\u001b[0m\n"}}
+2022-06-05 03:02:04.367346000000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.368344100000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.369341700000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.372334900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 100, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\ESC[0mIncompleteHeader 93801472\ESC[0m\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.378317100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":100,"type":"event","event":"output","body":{"category":"stdout","output":"\u001b[0mIncompleteHeader 93801472\u001b[0m\n"}}
+2022-06-05 03:02:04.391282300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.392279900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.394276000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.395272200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 101, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.400258200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":101,"type":"event","event":"output","body":{"category":"stdout","output":"\n"}}
+2022-06-05 03:02:04.402254300000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.407240300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.409235900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.411229200000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 102, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.415218600000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":102,"type":"event","event":"output","body":{"category":"stdout","output":"\n"}}
+2022-06-05 03:02:04.416216200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.417213300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.419208500000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.428185300000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 103, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "invalid HANDLE. eof.\n", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.432174200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":103,"type":"event","event":"output","body":{"category":"stdout","output":"invalid HANDLE. eof.\n"}}
+2022-06-05 03:02:04.434168400000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.435167400000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.436162600000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.439165600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. OutputEvent (OutputEvent {seqOutputEvent = 104, typeOutputEvent = "event", eventOutputEvent = "output", bodyOutputEvent = OutputEventBody {categoryOutputEventBody = "stdout", outputOutputEventBody = "", dataOutputEventBody = Nothing}})
+2022-06-05 03:02:04.442146700000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":104,"type":"event","event":"output","body":{"category":"stdout","output":""}}
+2022-06-05 03:02:04.451123100000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.452120600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.456111900000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.458105600000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. LaunchResponse (LaunchResponse {seqLaunchResponse = 2, typeLaunchResponse = "response", request_seqLaunchResponse = 2, successLaunchResponse = False, commandLaunchResponse = "launch", messageLaunchResponse = "[CRITICAL] can not get the initial ghci prompt."})
+2022-06-05 03:02:04.461096500000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":2,"type":"response","request_seq":2,"success":false,"command":"launch","message":"[CRITICAL] can not get the initial ghci prompt."}
+2022-06-05 03:02:04.464089200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink start start.
+2022-06-05 03:02:04.465085900000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs start waiting.
+2022-06-05 03:02:04.466083000000 [$pid(ThreadId 6)] DEBUG RESPONSE - src start waiting.
+2022-06-05 03:02:04.495007200000 [$pid(ThreadId 4)] DEBUG REQUEST - lbs2req get data. {"command":"disconnect","arguments":{"restart":false},"type":"request","seq":3}
+2022-06-05 03:02:04.497000900000 [$pid(ThreadId 4)] DEBUG REQUEST - sink start waiting.
+2022-06-05 03:02:04.497998500000 [$pid(ThreadId 4)] DEBUG REQUEST - lbs2req start waiting.
+2022-06-05 03:02:04.499993700000 [$pid(ThreadId 4)] DEBUG REQUEST - src start waiting.
+2022-06-05 03:02:04.498995200000 [$pid(ThreadId 5)] DEBUG APP - DisconnectRequest {seqDisconnectRequest = 3, typeDisconnectRequest = "request", commandDisconnectRequest = "disconnect", argumentsDisconnectRequest = Just (DisconnectArguments {restartDisconnectRequestArguments = Just False})}
+2022-06-05 03:02:04.523931400000 [$pid(ThreadId 5)] INFO APP - disconnect.
+2022-06-05 03:02:04.524927500000 [$pid(ThreadId 5)] DEBUG APP - sink start waiting.
+2022-06-05 03:02:04.525926000000 [$pid(ThreadId 5)] DEBUG APP - src start waiting.
+2022-06-05 03:02:04.525926000000 [$pid(ThreadId 6)] DEBUG RESPONSE - res2lbs get data. DisconnectResponse (DisconnectResponse {seqDisconnectResponse = 3, typeDisconnectResponse = "response", request_seqDisconnectResponse = 3, successDisconnectResponse = True, commandDisconnectResponse = "disconnect", messageDisconnectResponse = ""})
+2022-06-05 03:02:04.537894200000 [$pid(ThreadId 6)] DEBUG RESPONSE - sink get data. {"seq":3,"type":"response","request_seq":3,"success":true,"command":"disconnect","message":""}
+2022-06-05 03:02:04.552852800000 [$pid(ThreadId 6)] INFO RESPONSE - disconnect. end of response thread.
+2022-06-05 03:02:04.557839200000 [$pid(ThreadId 6)] DEBUG RESPONSE - end response app
+2022-06-05 03:08:47.465823800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Escuela\Computer Science\3er anno\Programacion Declarativa\2021\Haskell\app\Main.hs> [])
+2022-06-05 03:08:47.784974300000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Escuela\Computer Science\3er anno\Programacion Declarativa\2021\Haskell\test\Spec.hs> [])
+2022-06-05 03:08:48.554928100000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 03:32:37.336181800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Escuela\Computer Science\3er anno\Programacion Declarativa\2021\Haskell\app\Main.hs> [])
+2022-06-05 03:32:37.522686600000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Escuela\Computer Science\3er anno\Programacion Declarativa\2021\Haskell\test\Spec.hs> [])
+2022-06-05 03:32:37.774017200000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 03:35:20.430061200000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 03:35:49.914632400000 [$pid(ThreadId 5)] ERROR APP - [CRITICAL] can not get the initial ghci prompt.
+2022-06-05 03:38:18.040867400000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Escuela\Computer Science\3er anno\Programacion Declarativa\2021\Haskell\app\Main.hs> [])
+2022-06-05 03:38:18.075774800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Escuela\Computer Science\3er anno\Programacion Declarativa\2021\Haskell\test\Spec.hs> [])
+2022-06-05 03:38:18.198448000000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 03:48:54.178810200000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 03:50:54.261661400000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 03:53:33.581295300000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 03:54:09.424442100000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 03:54:37.669905200000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 03:54:58.489229500000 [$pid(ThreadId 4)] WARNING REQUEST - unsupported request command. {"command":"stepOut","arguments":{"threadId":0},"type":"request","seq":26}
+2022-06-05 07:43:12.802066700000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\src\Lib.hs> [])
+2022-06-05 07:43:12.825011100000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [])
+2022-06-05 07:43:12.840962400000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [])
+2022-06-05 07:43:12.910776100000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 07:44:14.879348500000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 07:44:17.127611200000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-06-05 07:44:17.204407400000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-06-05 07:44:19.118661900000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-06-05 07:45:04.364443000000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 07:45:04.404334900000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 07:45:04.447220900000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 07:46:05.730226800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 07:46:05.752167600000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 07:46:05.872845100000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 07:47:14.201003400000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 07:47:14.215963100000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 07:47:14.344619200000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 07:48:33.058153600000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 07:48:33.087075100000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 07:48:33.149907800000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 07:48:55.204227900000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 07:49:40.319470000000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 07:54:51.567028800000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 07:55:31.845217900000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 07:55:57.163050500000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 07:55:59.676640700000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-06-05 07:55:59.723514200000 [$pid(ThreadId 5)] ERROR APP - user error (no stacktrace found.)
+2022-06-05 07:56:01.637612800000 [$pid(ThreadId 5)] ERROR APP - user error (ExecResult not found.)
+2022-06-05 07:56:20.713109500000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-05 08:08:12.440704500000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 08:08:12.454667600000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 08:08:12.483590000000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-05 08:10:54.096742400000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 08:10:54.110704500000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-05 08:10:54.132646300000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-06 09:24:28.748322600000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-06 09:24:51.869491300000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
+2022-06-24 23:01:24.792737600000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-24 23:01:24.834627400000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-24 23:01:25.231563000000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-24 23:02:46.217871200000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\app\Main.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-24 23:02:46.229841100000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs")])
+2022-06-24 23:02:46.240810100000 [$pid(ThreadId 5)] ERROR APP - start debugging failed. user error (ExecResult not found.) : Left "user error (ExecResult not found.)"
+2022-06-24 23:05:34.962532100000 [$pid(ThreadId 5)] ERROR APP - user error (<getModule> loaded module can not find from path. <d:\Haskell\test\Spec.hs> [("Lib","D:\\Haskell\\src\\Lib.hs"),("Main","D:/Haskell/app/Main.hs")])
