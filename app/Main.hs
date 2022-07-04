@@ -63,7 +63,7 @@ data Box = Box {
 }
 
 instance Show Box where
-    show cell = "(" ++ show (row cell) ++ "," ++ show (col cell) ++ "," ++ show (value cell) ++ ")"
+    show box = "(" ++ show (row box) ++ "," ++ show (col box) ++ "," ++ show (value box) ++ ")"
 
 instance Eq Box where {
     b1 == b2 = row b1 == row b2 && col b1 == col b2
