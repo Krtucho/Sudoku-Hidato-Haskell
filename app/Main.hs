@@ -28,6 +28,7 @@ main = do putStr "What is your first name? "
 --             [-1, 1, 2]
 --             ]
 
+ma :: [[Int]]
 ma = [  [-1, 5, 0],
             [-1,-1, 0],
             [-1, 1, 0]
@@ -92,24 +93,28 @@ temp = Matrix{
 
 findBox x y m = Set.member Box{row=x, col=y, value=0} $ matrix m
 
-
+addBox :: Int -> Int -> Int -> Matrix -> Matrix
 addBox x y val m = Matrix { matrix = Set.insert (Box {row = x, col = y, value = val}) $ matrix m }
 
-addB x y val m =  Set.insert (Box {row = x, col = y, value = val}) $ matrix m
+-- addB x y val m =  Set.insert (Box {row = x, col = y, value = val}) $ matrix m
 
-addManyBoxes [(x, y, val)] m = addB (x y val) m
-addManyBoxes (x:xs) m = let (x,y,val) =  addB (x y val) m $ addManyBoxes xs m
+addManyBoxes :: [(Int, Int, Int)] -> Matrix -> Matrix
+addManyBoxes [x] m = let (r,c,val) = x in addBox r c val m
+addManyBoxes (x:xs) m = let (r,c,val) = x in addManyBoxes xs (addBox r c val m) 
 
-xxs = [[1,3,5,2,3,1,2,4,5],[1,2,3,4,5,6,7,8,9],[1,2,4,2,1,6,3,1,3,2,3,6]]
+-- xxs = [[1,3,5,2,3,1,2,4,5],[1,2,3,4,5,6,7,8,9],[1,2,4,2,1,6,3,1,3,2,3,6]]
 
-listTraversal (x:xs) = zip xxs [0..2]-- [ zip(x,y) | x <- xs, y<- [1..3]]
--- listValues (x:xs)
--- convertMatrix m = 
+-- listTraversal (x:xs) = zip xxs [0..2]-- [ zip(x,y) | x <- xs, y<- [1..3]]
+-- -- listValues (x:xs)
+-- -- convertMatrix m = 
 
--- dfs (x, y) (x, y) h = (True, h)
-test [x] = let (a,b,c) = x
-                in show (a,b,c)
-test (x:xs) = let (a,b,c) = x
-                in show (a,b,c) ++ test xs
+-- -- dfs (x, y) (x, y) h = (True, h)
+-- test [x] = let (a,b,c) = x
+--                 in show (a,b,c)
+-- test (x:xs) = let (a,b,c) = x
+--                 in show (a,b,c) ++ test xs
 
-test2 m = [(x,y, m!!x!!y) | x <- [0..1], y <- [0..1]]
+test2 m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr], y <- [0..maxc]]
+
+transformMatrix :: [[Int]] -> Int -> Int -> Matrix
+transformMatrix m_in maxr maxc = addManyBoxes (test2 m_in maxr maxc) temp
