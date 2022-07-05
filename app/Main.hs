@@ -118,3 +118,10 @@ test2 m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr], y <- [0..maxc]]
 
 transformMatrix :: [[Int]] -> Int -> Int -> Matrix
 transformMatrix m_in maxr maxc = addManyBoxes (test2 m_in maxr maxc) temp
+
+-- takeAdj (r,c) m = Set.filter (\(x) -> col x == c && row x == r ) $ matrix m--findAdjacents (r,c)
+getAdj :: (Int, Int, Int) -> [Box]
+getAdj (r,c, v) = [Box nr nc v| adj <- findAdjacents (r,c), let (nr, nc) = adj, nr >= 0, nc >= 0, nr <= maxr, nc <= maxc]
+
+canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m)) in (val box) == 0 = True
+                    | otherwise = False
