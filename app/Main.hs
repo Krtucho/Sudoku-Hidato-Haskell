@@ -47,9 +47,12 @@ findAdjacents (r,c)= [(r + fst x, c + snd x) | x <- dir]
 
 -- validPos (x,y) = (x >= 0) && (y >= 0) && (x <= maxr) && (y <= maxc) && matrix !! x !! y >= 0
 
--- nextStep m step prevPos adjacents | findValue step m && valueIsOk step m = m
---                                   | findValue step m && not valueIsOk step m = []
---                                   | otherwise = [x | x <- adjacents, canMoveToPos x]
+isAdjacent :: Box -> Box -> Bool
+isAdjacent (Box r1 c1 _) (Box r2 c2 _) = True
+
+nextStep m step prevPos adjacents restrictions | findValue step m && let valueIsOk step m = m
+                                  | findValue step m && not valueIsOk step m = []
+                                  | otherwise = [x | x <- adjacents, canMoveToPos x]
 total = 5
 solve m step pos | step == total + 1 = m
                 --  | step == total = m
@@ -123,5 +126,10 @@ transformMatrix m_in maxr maxc = addManyBoxes (test2 m_in maxr maxc) temp
 getAdj :: (Int, Int, Int) -> [Box]
 getAdj (r,c, v) = [Box nr nc v| adj <- findAdjacents (r,c), let (nr, nc) = adj, nr >= 0, nc >= 0, nr <= maxr, nc <= maxc]
 
-canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m)) in (val box) == 0 = True
+canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m)) (matrix m) in (value box) == 0 = True
                     | otherwise = False
+
+makeRestrictions :: Matrix -> Map Int Box
+makeRestrictions m = Map.fromList (map (\x-> (value x, x)) (Set.toList $ Set.filter (\box -> value box > 0) $ matrix m))
+
+restrictions = makeRestrictions temp
