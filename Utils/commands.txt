@@ -5,3 +5,5 @@ ghci> :set prompt Krtu_Shell>
 ghci> :l baby
 [1 of 1] Compiling Main
 Ok, modules loaded: Main.
+
+stack ghci --package random

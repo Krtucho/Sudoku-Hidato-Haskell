@@ -29,8 +29,8 @@ main = do putStr "What is your first name? "
 --             ]
 
 ma :: [[Int]]
-ma = [  [-1, 5, 0],
-            [-1,-1, 0],
+ma = [      [-1, 5, 0],
+            [-1, 0, 0],
             [-1, 1, 0]
             ]
 
@@ -48,17 +48,18 @@ findAdjacents (r,c)= [(r + fst x, c + snd x) | x <- dir]
 -- validPos (x,y) = (x >= 0) && (y >= 0) && (x <= maxr) && (y <= maxc) && matrix !! x !! y >= 0
 
 isAdjacent :: Box -> Box -> Bool
-isAdjacent (Box r1 c1 _) (Box r2 c2 _) = True
+isAdjacent (Box r1 c1 _) (Box r2 c2 _) = abs (r1 - r2) < 2 && abs (c1 - c2) < 2
 
-nextStep m step prevPos adjacents restrictions | findValue step m && let valueIsOk step m = m
-                                  | findValue step m && not valueIsOk step m = []
-                                  | otherwise = [x | x <- adjacents, canMoveToPos x]
+nextStep :: Matrix -> Int -> Box -> [Box] -> Map Int Box -> [(Matrix, Box)]
+nextStep m step prevPos adjacents restrictions |Map.member step restrictions && isAdjacent (restrictions Map.! step) prevPos = [(m, restrictions Map.! step)]
+                                  | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = []--findValue step m && not valueIsOk step m = []
+                                  | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- adjacents, canSetInAdj (row x, col x) m]
 total = 5
-solve m step pos | step == total + 1 = m
-                --  | step == total = m
-                --  |  step == total = m
-                 |  otherwise = let xs = []-- nextStep ...
-                                in [x | x <- xs]
+solve :: Matrix -> Int -> Box -> Map Int Box -> [Matrix]
+solve m step pos restrictions | step == total + 1 = [m]
+                            --  | step == total = m
+                            --  |  step == total = m
+                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos))) restrictions in concat [solve matrix (step+1) box restrictions | (matrix, box) <- xs]
 
 data Box = Box {
     row::Int,
@@ -133,3 +134,5 @@ makeRestrictions :: Matrix -> Map Int Box
 makeRestrictions m = Map.fromList (map (\x-> (value x, x)) (Set.toList $ Set.filter (\box -> value box > 0) $ matrix m))
 
 restrictions = makeRestrictions temp
+
+-- nextStep temp 2 (Box 2 1 1) (getAdj (2,1,2)) restrictions
