@@ -33,7 +33,7 @@ main = do putStr "What is your first name? "
 
 ma :: [[Int]]
 ma = [      [-1, 5, 0],
-            [-1,-1, 0],
+            [-1,0, 3],
             [-1, 1, 0]
             ]
 
@@ -41,47 +41,51 @@ ma = [      [-1, 5, 0],
 -- printMatrix (x:xs) = do putStrLn x
 --                         printMatrix xs
 
--- (4,6) (3,4) 
--- mn :: [[Int]]
--- mn=  [  
---        [0,33,35,0,0,-1,-1,-1],
---        [0,0,24,22,0,-1,-1,-1],
---        [0,0,0,21,0,0,-1,-1],
---        [0,26,0,13,40,11,-1,-1],
---        [27,0,0,0,9,0,1,-1],
---        [-1,-1,0,0,18,0,0,-1],
---        [-1,-1,-1,-1,0,7,0,0],
---        [-1,-1,-1,-1,-1,-1,5,0]
---        ]
 
 
--- printMatrix [a] = putStrLn a
--- printMatrix (x:xs) = do putStrLn x
---                         printMatrix xs
 
 
 -------------------------------------------------------GENERADOR------------------------------------------------------------------------------------
-generate::Int->Int->Int->[Matrix] --se le pasa la cantidad de filas, de columnas y de casillas que no existen que se quiere tenga la matriz 
-generate fils cols obst = let m = createMatrix fils cols  --creo la matriz como lista de listas
-                              m2 = transformMatrix m fils cols --la transformo en una de tipo (fila, columna, valor)
-                              (x,y) = getFirstPosition fils cols
-                              m3 = addBox x y 1 m2
-                              total = fils*cols-obst
-                              rest = makeRestrictions m3
-                          in solve m3 2 (Box x y 1) rest total
 
 createMatrix::Int->Int->[[Int]]    --se le pasan la cantidad de filas y de columnas y se genera una matrix con esas dimensiones y 0 en todas las posiciones
-createMatrix fils cols = [[0 | x <- [1..fils]] | y <- [1..cols]]
+createMatrix rows cols = [[0 | x <- [1..rows]] | y <- [1..cols]]
 
 getFirstPosition::Int->Int->(Int,Int)
-getFirstPosition fils cols = (getRandomNumber 0 fils , getRandomNumber 0 cols)
+getFirstPosition rows cols = (getRandomNumber 0 (rows-1) , getRandomNumber 0 (cols-1))
 
--- isUnique::Matrix->Bool  --verifica que el hidato tenga solucion uica a partir del solucionador
--- isUnique m = solve 
+-- change::Box->Box
+-- change (Box row col _) = 
+-- putObstInEmptySpaces m =  length(getEmptyBoxes firstSolution) == 0
 
+putObstInEmptySpaces::Matrix-> Matrix    --convertir todas las posiciones que quedaron vacias en obstaculos
+putObstInEmptySpaces m = addManyBoxes [ (x,y,-1) | (Box x y _ ) <- (getEmptyBoxes m)] m
+                              
 
+-- isUnique::Matrix->Bool  --verifica que el hidato tenga solucion unica a partir del solucionador
+-- isUnique m firstpos rest = solve 
+
+getUniqueSolve:: Matrix -> (Int,Int) -> Matrix  --se le envia un hidato resuelto
+getUniqueSolve m firstp = m
+
+generate::Int->Int->Int->Matrix --se le pasa la cantidad de filas, de columnas y de casillas que no existen que se quiere tenga la matriz 
+generate rows cols obst = let m = createMatrix rows cols  --creo la matriz como lista de listas
+                              m2 = transformMatrix m rows cols --la transformo en una de tipo (fila, columna, valor)
+                              (x,y) = getFirstPosition rows cols
+                              m3 = addBox x y 1 m2     --agrego el 1 en la posicion seleccionada anteriormente
+                              total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
+                              rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
+                              firstSolution = head (solve m3 2 (Box x y 1) rest total)  --a partir de la primera matriz de soluciones del hidato mando a obtener una plantilla
+                              matrix = putObstInEmptySpaces firstSolution
+                          in  getUniqueSolve matrix (x,y) -- que tenga solucion unica para devolverla directamente desde aqui
+
+                                                                                      
 
 -------------------------------------------------------GENERADOR-FIN--------------------------------------------------------------------------------
+
+
+
+
+
 
 
 maxr = 2
@@ -99,10 +103,12 @@ isAdjacent (Box r1 c1 _) (Box r2 c2 _) = abs (r1 - r2) < 2 && abs (c1 - c2) < 2
 nextStep :: Matrix -> Int -> Box -> [Box] -> Map Int Box -> [(Matrix, Box)]
 nextStep m step prevPos adjacents restrictions |Map.member step restrictions && isAdjacent (restrictions Map.! step) prevPos = [(m, restrictions Map.! step)]
                                   | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = []--findValue step m && not valueIsOk step m = []
-                                  | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- adjacents, canSetInAdj (row x, col x) m]
+                                  | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- unorderList adjacents, canSetInAdj (row x, col x) m]
 total = 5
 solve :: Matrix -> Int -> Box -> Map Int Box -> Int -> [Matrix]
 solve m step pos restrictions total | step == total + 1 = [m]
+                            --  | step == total = m
+                            --  |  step == total = m
                               | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos))) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs]
 
 data Box = Box {
@@ -147,6 +153,7 @@ addBox x y val m = Matrix { matrix = Set.insert (Box {row = x, col = y, value = 
 -- addB x y val m =  Set.insert (Box {row = x, col = y, value = val}) $ matrix m
 
 addManyBoxes :: [(Int, Int, Int)] -> Matrix -> Matrix
+addManyBoxes [] m = m
 addManyBoxes [x] m = let (r,c,val) = x in addBox r c val m
 addManyBoxes (x:xs) m = let (r,c,val) = x in addManyBoxes xs (addBox r c val m) 
 
@@ -166,10 +173,10 @@ singletonMatrix = Matrix{
     matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
 } 
 
-test2 m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr], y <- [0..maxc]]
+test2 m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr-1], y <- [0..maxc-1]]
 
 transformMatrix :: [[Int]] -> Int -> Int -> Matrix
-transformMatrix m_in maxr maxc = addManyBoxes (test2 m_in maxr maxc) temp
+transformMatrix m_in maxr maxc = addManyBoxes (test2 m_in maxr maxc) singletonMatrix
 
 -- takeAdj (r,c) m = Set.filter (\(x) -> col x == c && row x == r ) $ matrix m--findAdjacents (r,c)
 getAdj :: (Int, Int, Int) -> [Box]
@@ -190,16 +197,36 @@ findBorders m = let maxr = length m
 
 -- nextStep temp 2 (Box 2 1 1) (getAdj (2,1,2)) restrictions
 solveHidato :: [[Int]] -> (Int, Int, Int) -> Int -> [Matrix]
-solveHidato m pos total = let m_tr = transformMatrix m (maxr-1) (maxc-1)
+solveHidato m pos total = let m_tr = transformMatrix m (maxr) (maxc)
                               restrictions = (makeRestrictions m_tr)
                        in solve m_tr 2 (Box x y z) restrictions total
                       where (maxr,maxc) = findBorders m
                             (x, y, z) = pos
 
-shuffle' :: [Int] -> [a] -> [a]
-shuffle' (i:is) xs = let (firsts, rest) = splitAt (i `mod` length xs) xs
-                     in (head rest) : shuffle' is (firsts ++ tail rest)
+-- shuffle' :: [Int] -> [a] -> [a]
+-- shuffle' (i:is) xs = let (firsts, rest) = splitAt (i `mod` length xs) xs
+--                      in (head rest) : shuffle' is (firsts ++ tail rest)
 
 getRandomNumber :: Int -> Int -> Int
 getRandomNumber a b = unsafePerformIO (randomRIO (a, b) :: IO Int)
 -- num = unsafePerformIO (randomRIO (0, 10) :: IO Int)
+
+replaceLst :: Int -> [a] -> [a]
+replaceLst x xs = let (a,b) = splitAt x xs
+                 in (if length b > 0 then [head b] else []) ++(if length a > 0 then tail a else []) ++ (if length a > 0 then [head a] else [])++(if length b > 0 then tail b else [])
+
+unorderList :: [a] -> [a]
+unorderList xs = shuffle' xs (len-1) (map (\x -> getRandomNumber 0 len) [1..len])
+                    where len = length xs
+
+shuffle' :: [a] -> Int -> [Int] -> [a] 
+-- shuffle' xs 0 rpl = 
+shuffle' xs index rpl | index == 0 = replaceLst (rpl!!0) xs
+                      | otherwise = shuffle' (replaceLst (rpl!!index) xs) (index-1) rpl
+
+
+getEmptyBoxes :: Matrix -> [Box]
+getEmptyBoxes m = (Set.toList $ Set.filter (\box -> value box == 0) $ matrix m)
+
+getObstacles :: Matrix -> [Box]
+getObstacles m = (Set.toList $ Set.filter (\box -> value box == -1) $ matrix m)
