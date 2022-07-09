@@ -33,7 +33,7 @@ main = do putStr "What is your first name? "
 
 ma :: [[Int]]
 ma = [      [-1, 5, 0],
-            [-1,-1, 3],
+            [-1,0, 3],
             [-1, 1, 0]
             ]
 
@@ -56,7 +56,7 @@ isAdjacent (Box r1 c1 _) (Box r2 c2 _) = abs (r1 - r2) < 2 && abs (c1 - c2) < 2
 nextStep :: Matrix -> Int -> Box -> [Box] -> Map Int Box -> [(Matrix, Box)]
 nextStep m step prevPos adjacents restrictions |Map.member step restrictions && isAdjacent (restrictions Map.! step) prevPos = [(m, restrictions Map.! step)]
                                   | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = []--findValue step m && not valueIsOk step m = []
-                                  | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- adjacents, canSetInAdj (row x, col x) m]
+                                  | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- unorderList adjacents, canSetInAdj (row x, col x) m]
 total = 5
 solve :: Matrix -> Int -> Box -> Map Int Box -> Int -> [Matrix]
 solve m step pos restrictions total | step == total + 1 = [m]
@@ -163,9 +163,15 @@ getRandomNumber :: Int -> Int -> Int
 getRandomNumber a b = unsafePerformIO (randomRIO (a, b) :: IO Int)
 -- num = unsafePerformIO (randomRIO (0, 10) :: IO Int)
 
+replaceLst :: Int -> [a] -> [a]
 replaceLst x xs = let (a,b) = splitAt x xs
-                 in (head b) :(tail a) ++ (head a):(tail b)
+                 in (if length b > 0 then [head b] else []) ++(if length a > 0 then tail a else []) ++ (if length a > 0 then [head a] else [])++(if length b > 0 then tail b else [])
 
-unorderList n = map (\x -> getRandomNumber 0 n) [1..n]
+unorderList :: [a] -> [a]
+unorderList xs = shuffle' xs (len-1) (map (\x -> getRandomNumber 0 len) [1..len])
+                    where len = length xs
 
--- shuffle' xs index = 
+shuffle' :: [a] -> Int -> [Int] -> [a] 
+-- shuffle' xs 0 rpl = 
+shuffle' xs index rpl | index == 0 = replaceLst (rpl!!0) xs
+                      | otherwise = shuffle' (replaceLst (rpl!!index) xs) (index-1) rpl
