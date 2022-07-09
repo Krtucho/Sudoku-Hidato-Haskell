@@ -11,6 +11,9 @@ import qualified Data.Set as Set
 
 -- import Control.Lens
 
+import System.Random
+import System.IO.Unsafe
+
 main :: IO ()
 main = do putStr "What is your first name? "
                 -- first <- getLine
@@ -55,11 +58,11 @@ nextStep m step prevPos adjacents restrictions |Map.member step restrictions && 
                                   | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = []--findValue step m && not valueIsOk step m = []
                                   | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- adjacents, canSetInAdj (row x, col x) m]
 total = 5
-solve :: Matrix -> Int -> Box -> Map Int Box -> [Matrix]
-solve m step pos restrictions | step == total + 1 = [m]
+solve :: Matrix -> Int -> Box -> Map Int Box -> Int -> [Matrix]
+solve m step pos restrictions total | step == total + 1 = [m]
                             --  | step == total = m
                             --  |  step == total = m
-                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos))) restrictions in concat [solve matrix (step+1) box restrictions | (matrix, box) <- xs]
+                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos))) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs]
 
 data Box = Box {
     row::Int,
@@ -118,6 +121,10 @@ addManyBoxes (x:xs) m = let (r,c,val) = x in addManyBoxes xs (addBox r c val m)
 -- test (x:xs) = let (a,b,c) = x
 --                 in show (a,b,c) ++ test xs
 
+singletonMatrix = Matrix{
+    matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
+} 
+
 test2 m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr], y <- [0..maxc]]
 
 transformMatrix :: [[Int]] -> Int -> Int -> Matrix
@@ -135,4 +142,23 @@ makeRestrictions m = Map.fromList (map (\x-> (value x, x)) (Set.toList $ Set.fil
 
 restrictions = makeRestrictions temp
 
+findBorders :: [[Int]] -> (Int, Int)
+findBorders m = let maxr = length m
+                in if maxr > 0 then (maxr, length (m!!0)) else (maxr, 0)
+
+
 -- nextStep temp 2 (Box 2 1 1) (getAdj (2,1,2)) restrictions
+solveHidato :: [[Int]] -> (Int, Int, Int) -> Int -> [Matrix]
+solveHidato m pos total = let m_tr = transformMatrix m (maxr-1) (maxc-1)
+                              restrictions = (makeRestrictions m_tr)
+                       in solve m_tr 2 (Box x y z) restrictions total
+                      where (maxr,maxc) = findBorders m
+                            (x, y, z) = pos
+
+shuffle' :: [Int] -> [a] -> [a]
+shuffle' (i:is) xs = let (firsts, rest) = splitAt (i `mod` length xs) xs
+                     in (head rest) : shuffle' is (firsts ++ tail rest)
+
+getRandomNumber :: Int -> Int -> Int
+getRandomNumber a b = unsafePerformIO (randomRIO (a, b) :: IO Int)
+-- num = unsafePerformIO (randomRIO (0, 10) :: IO Int)
