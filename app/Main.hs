@@ -61,7 +61,7 @@ getUniqueSolve m firstp = m
 
 generate::Int->Int->Int->Matrix --se le pasa la cantidad de filas, de columnas y de casillas que no existen que se quiere tenga la matriz 
 generate rows cols obst = let m = createMatrix rows cols  --creo la matriz como lista de listas
-                              m2 = transformMatrix m rows cols --la transformo en una de tipo (fila, columna, valor)
+                              m2 = transformMatrix m --la transformo en una de tipo (fila, columna, valor)
                               (x,y) = getFirstPosition rows cols
                               m3 = addBox x y 1 m2     --agrego el 1 en la posicion seleccionada anteriormente
                               total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
@@ -84,8 +84,8 @@ ma = [      [-1, 5, 0, -1],
 -- printMatrix (x:xs) = do putStrLn x
 --                         printMatrix xs
 
-maxr = 2
-maxc = 3
+-- maxr = 2
+-- maxc = 3
 
 dir = [(-1,-1),(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1)]
 
@@ -100,12 +100,12 @@ nextStep :: Matrix -> Int -> Box -> [Box] -> Map Int Box -> [(Matrix, Box)]
 nextStep m step prevPos adjacents restrictions |Map.member step restrictions && isAdjacent (restrictions Map.! step) prevPos = [(m, restrictions Map.! step)]
                                   | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = []--findValue step m && not valueIsOk step m = []
                                   | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- unorderList adjacents, canSetInAdj (row x, col x) m]
-total = 5
+-- total = 5
 solve :: Matrix -> Int -> Box -> Map Int Box -> Int -> [Matrix]
 solve m step pos restrictions total | step == total + 1 = [m]
                             --  | step == total = m
                             --  |  step == total = m
-                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos))) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs]
+                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos)) (rows m, cols m)) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs]
 
 data Box = Box {
     row::Int,
@@ -127,6 +127,8 @@ instance Ord Box where
             | col b1 == col b2 = EQ
 
 data Matrix = Matrix {
+    rows :: Int,
+    cols :: Int,
     matrix :: Set Box                    
 }
 
@@ -134,9 +136,9 @@ instance Show Matrix where
     show m = "\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getRows maxr m)) ++ "\n\t\t}" 
                 where maxr = row (getMax m)
 
-temp = Matrix{
-    matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
-} 
+-- temp = Matrix{
+--     matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
+-- } 
 
 
 -- addBox m val = Matrix { matrix = Set.insert (Box {row = 0, col = 1, value = val}) $ matrix m }
@@ -146,7 +148,7 @@ temp = Matrix{
 findBox x y m = Set.member Box{row=x, col=y, value=0} $ matrix m
 
 addBox :: Int -> Int -> Int -> Matrix -> Matrix
-addBox x y val m = Matrix { matrix = Set.insert (Box {row = x, col = y, value = val}) $ matrix m }
+addBox x y val m = Matrix { rows=rows m, cols=cols m, matrix = Set.insert (Box {row = x, col = y, value = val}) $ matrix m }
 
 -- addB x y val m =  Set.insert (Box {row = x, col = y, value = val}) $ matrix m
 
@@ -167,18 +169,20 @@ addManyBoxes (x:xs) m = let (r,c,val) = x in addManyBoxes xs (addBox r c val m)
 -- test (x:xs) = let (a,b,c) = x
 --                 in show (a,b,c) ++ test xs
 
-singletonMatrix = Matrix{
+singletonMatrix rows cols = Matrix{
+    rows=rows,
+    cols=cols,
     matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
 } 
 
-test2 m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr-1], y <- [0..maxc-1]]
+mapMatrix m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr-1], y <- [0..maxc-1]]
 
-transformMatrix :: [[Int]] -> Int -> Int -> Matrix
-transformMatrix m_in maxr maxc = addManyBoxes (test2 m_in maxr maxc) singletonMatrix
+transformMatrix :: [[Int]] -> Matrix
+transformMatrix m_in = addManyBoxes (mapMatrix m_in (length m_in) (length (m_in!!0))) (singletonMatrix (length m_in) (length (m_in!!0)))
 
 -- takeAdj (r,c) m = Set.filter (\(x) -> col x == c && row x == r ) $ matrix m--findAdjacents (r,c)
-getAdj :: (Int, Int, Int) -> [Box]
-getAdj (r,c, v) = [Box nr nc v| adj <- findAdjacents (r,c), let (nr, nc) = adj, nr >= 0, nc >= 0, nr <= maxr, nc <= maxc]
+getAdj :: (Int, Int, Int) -> (Int, Int) -> [Box]
+getAdj (r,c, v) (maxr, maxc) = [Box nr nc v| adj <- findAdjacents (r,c), let (nr, nc) = adj, nr >= 0, nc >= 0, nr < maxr, nc < maxc]
 
 canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m)) (matrix m) in (value box) == 0 = True
                     | otherwise = False
@@ -186,7 +190,7 @@ canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m))
 makeRestrictions :: Matrix -> Map Int Box
 makeRestrictions m = Map.fromList (map (\x-> (value x, x)) (Set.toList $ Set.filter (\box -> value box > 0) $ matrix m))
 
-restrictions = makeRestrictions temp
+-- restrictions = makeRestrictions temp
 
 findBorders :: [[Int]] -> (Int, Int)
 findBorders m = let maxr = length m
@@ -195,7 +199,7 @@ findBorders m = let maxr = length m
 
 -- nextStep temp 2 (Box 2 1 1) (getAdj (2,1,2)) restrictions
 solveHidato :: [[Int]] -> (Int, Int, Int) -> Int -> [Matrix]
-solveHidato m pos total = let m_tr = transformMatrix m (maxr) (maxc)
+solveHidato m pos total = let m_tr = transformMatrix m
                               restrictions = (makeRestrictions m_tr)
                        in solve m_tr 2 (Box x y z) restrictions total
                       where (maxr,maxc) = findBorders m
@@ -238,7 +242,7 @@ getMax m = let Just val = Set.lookupMax (matrix m)
 getMatrixRow index m = m!!index
 getMatrixRows maxr m = (map (\x -> m!!x) [0..maxr])
 
-printMatrix :: [[Integer]] -> IO ()
+printMatrix :: [[Int]] -> IO ()
 printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getMatrixRows maxr m)) ++ "\n\t\t}")
                 where maxr = (length m) - 1
 
@@ -249,3 +253,7 @@ printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> sho
 --test 1
 test1 :: [[Int]]
 test1 = [[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]]
+
+-- (1,0) (3,1) [[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]
+test2 :: [[Int]]
+test2 = [[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]
