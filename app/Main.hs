@@ -33,7 +33,7 @@ main = do putStr "What is your first name? "
 
 ma :: [[Int]]
 ma = [      [-1, 5, 0],
-            [-1,-1, 0],
+            [-1,-1, 3],
             [-1, 1, 0]
             ]
 
@@ -125,10 +125,10 @@ singletonMatrix = Matrix{
     matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
 } 
 
-test2 m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr], y <- [0..maxc]]
+test2 m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr-1], y <- [0..maxc-1]]
 
 transformMatrix :: [[Int]] -> Int -> Int -> Matrix
-transformMatrix m_in maxr maxc = addManyBoxes (test2 m_in maxr maxc) temp
+transformMatrix m_in maxr maxc = addManyBoxes (test2 m_in maxr maxc) singletonMatrix
 
 -- takeAdj (r,c) m = Set.filter (\(x) -> col x == c && row x == r ) $ matrix m--findAdjacents (r,c)
 getAdj :: (Int, Int, Int) -> [Box]
@@ -149,16 +149,23 @@ findBorders m = let maxr = length m
 
 -- nextStep temp 2 (Box 2 1 1) (getAdj (2,1,2)) restrictions
 solveHidato :: [[Int]] -> (Int, Int, Int) -> Int -> [Matrix]
-solveHidato m pos total = let m_tr = transformMatrix m (maxr-1) (maxc-1)
+solveHidato m pos total = let m_tr = transformMatrix m (maxr) (maxc)
                               restrictions = (makeRestrictions m_tr)
                        in solve m_tr 2 (Box x y z) restrictions total
                       where (maxr,maxc) = findBorders m
                             (x, y, z) = pos
 
-shuffle' :: [Int] -> [a] -> [a]
-shuffle' (i:is) xs = let (firsts, rest) = splitAt (i `mod` length xs) xs
-                     in (head rest) : shuffle' is (firsts ++ tail rest)
+-- shuffle' :: [Int] -> [a] -> [a]
+-- shuffle' (i:is) xs = let (firsts, rest) = splitAt (i `mod` length xs) xs
+--                      in (head rest) : shuffle' is (firsts ++ tail rest)
 
 getRandomNumber :: Int -> Int -> Int
 getRandomNumber a b = unsafePerformIO (randomRIO (a, b) :: IO Int)
 -- num = unsafePerformIO (randomRIO (0, 10) :: IO Int)
+
+replaceLst x xs = let (a,b) = splitAt x xs
+                 in (head b) :(tail a) ++ (head a):(tail b)
+
+unorderList n = map (\x -> getRandomNumber 0 n) [1..n]
+
+-- shuffle' xs index = 
