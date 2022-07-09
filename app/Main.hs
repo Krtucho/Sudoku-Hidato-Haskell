@@ -3,6 +3,8 @@ import Lib
 import System.IO
 -- import PdePreludat
 
+import Data.List
+
 import Data.Map (Map)
 import qualified Data.Map as Map
 
@@ -16,6 +18,9 @@ import System.IO.Unsafe
 
 main :: IO ()
 main = do putStr "What is your first name? "
+
+some :: String -> IO ()
+some a = do putStrLn (a ++ "\n" ++ "aaaaa")
                 -- first <- getLine
                 -- putStr "And your last name? "
 -- foo :: Maybe String
@@ -31,10 +36,48 @@ main = do putStr "What is your first name? "
 --             [-1, 1, 2]
 --             ]
 
+
+-------------------------------------------------------GENERADOR------------------------------------------------------------------------------------
+
+createMatrix::Int->Int->[[Int]]    --se le pasan la cantidad de filas y de columnas y se genera una matrix con esas dimensiones y 0 en todas las posiciones
+createMatrix rows cols = [[0 | x <- [1..rows]] | y <- [1..cols]]
+
+getFirstPosition::Int->Int->(Int,Int)
+getFirstPosition rows cols = (getRandomNumber 0 (rows-1) , getRandomNumber 0 (cols-1))
+
+-- change::Box->Box
+-- change (Box row col _) = 
+-- putObstInEmptySpaces m =  length(getEmptyBoxes firstSolution) == 0
+
+putObstInEmptySpaces::Matrix-> Matrix    --convertir todas las posiciones que quedaron vacias en obstaculos
+putObstInEmptySpaces m = addManyBoxes [ (x,y,-1) | (Box x y _ ) <- (getEmptyBoxes m)] m
+                              
+
+-- isUnique::Matrix->Bool  --verifica que el hidato tenga solucion unica a partir del solucionador
+-- isUnique m firstpos rest = solve 
+
+getUniqueSolve:: Matrix -> (Int,Int) -> Matrix  --se le envia un hidato resuelto
+getUniqueSolve m firstp = m
+
+generate::Int->Int->Int->Matrix --se le pasa la cantidad de filas, de columnas y de casillas que no existen que se quiere tenga la matriz 
+generate rows cols obst = let m = createMatrix rows cols  --creo la matriz como lista de listas
+                              m2 = transformMatrix m rows cols --la transformo en una de tipo (fila, columna, valor)
+                              (x,y) = getFirstPosition rows cols
+                              m3 = addBox x y 1 m2     --agrego el 1 en la posicion seleccionada anteriormente
+                              total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
+                              rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
+                              firstSolution = head (solve m3 2 (Box x y 1) rest total)  --a partir de la primera matriz de soluciones del hidato mando a obtener una plantilla
+                              matrix = putObstInEmptySpaces firstSolution
+                          in  getUniqueSolve matrix (x,y) -- que tenga solucion unica para devolverla directamente desde aqui
+
+                                                                                      
+
+-------------------------------------------------------GENERADOR-FIN--------------------------------------------------------------------------------
+
 ma :: [[Int]]
-ma = [      [-1, 5, 0],
-            [-1,0, 3],
-            [-1, 1, 0]
+ma = [      [-1, 5, 0, -1],
+            [-1,0, 3, -1],
+            [-1, 1, 0, -1]
             ]
 
 -- printMatrix [a] = putStrLn a
@@ -42,7 +85,7 @@ ma = [      [-1, 5, 0],
 --                         printMatrix xs
 
 maxr = 2
-maxc = 2
+maxc = 3
 
 dir = [(-1,-1),(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1)]
 
@@ -83,11 +126,13 @@ instance Ord Box where
             | row b1 == row b2 = compare (col b1) (col b2)
             | col b1 == col b2 = EQ
 
-data Matrix = Matrix { 
-    matrix :: Set Box
-                    
-} deriving(Show)
+data Matrix = Matrix {
+    matrix :: Set Box                    
+}
 
+instance Show Matrix where
+    show m = "\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getRows maxr m)) ++ "\n\t\t}" 
+                where maxr = row (getMax m)
 
 temp = Matrix{
     matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
@@ -106,6 +151,7 @@ addBox x y val m = Matrix { matrix = Set.insert (Box {row = x, col = y, value = 
 -- addB x y val m =  Set.insert (Box {row = x, col = y, value = val}) $ matrix m
 
 addManyBoxes :: [(Int, Int, Int)] -> Matrix -> Matrix
+addManyBoxes [] m = m
 addManyBoxes [x] m = let (r,c,val) = x in addBox r c val m
 addManyBoxes (x:xs) m = let (r,c,val) = x in addManyBoxes xs (addBox r c val m) 
 
@@ -175,3 +221,31 @@ shuffle' :: [a] -> Int -> [Int] -> [a]
 -- shuffle' xs 0 rpl = 
 shuffle' xs index rpl | index == 0 = replaceLst (rpl!!0) xs
                       | otherwise = shuffle' (replaceLst (rpl!!index) xs) (index-1) rpl
+
+getEmptyBoxes :: Matrix -> [Box]
+getEmptyBoxes m = (Set.toList $ Set.filter (\box -> value box == 0) $ matrix m)
+
+getObstacles :: Matrix -> [Box]
+getObstacles m = (Set.toList $ Set.filter (\box -> value box == -1) $ matrix m)
+
+
+getRow index m = Set.toList $ Set.filter (\x -> (row x) == index) $ m
+printRow row = (map (\x -> value x) row)
+getRows maxr m = map (\y -> printRow y) $ (map (\x -> getRow x (matrix m)) [0..maxr])
+getMax m = let Just val = Set.lookupMax (matrix m)
+            in val
+
+getMatrixRow index m = m!!index
+getMatrixRows maxr m = (map (\x -> m!!x) [0..maxr])
+
+printMatrix :: [[Integer]] -> IO ()
+printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getMatrixRows maxr m)) ++ "\n\t\t}")
+                where maxr = (length m) - 1
+
+-- :: String -> IO ()
+-- some a = do putStrLn (a ++ "\n" ++ "aaaaa")
+
+-- (4,6) (3,4) [[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]]
+--test 1
+test1 :: [[Int]]
+test1 = [[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]]
