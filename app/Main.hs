@@ -92,36 +92,10 @@ generate rows cols = let m = createMatrix rows cols  --creo la matriz como lista
                      in getUniqueSolve matrix (x,y) total-- que tenga solucion unica para devolverla directamente desde aqui
 
                                         
--------------------------------------------------------GENERADOR-FIN--------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+---------------------------------------------------------------------------GENERADOR-FIN----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------PROBAR-PARTES-DEL-GENERADOR-------------------------------------------------------------------------------------------------
-
-
-generateTemp::Int->Int->Matrix --se le pasa la cantidad de filas y de columnas  
-generateTemp rows cols = let m = createMatrix rows cols  --creo la matriz como lista de listas
-                             (x,y) = getFirstPosition rows cols  --obtener la posicion del numero 1
-                             obst = (rows*cols)`div`4  --se crean un 20% de obstaculos
-                             m3 = addBox x y 1 m     --agrego el 1 en la posicion seleccionada anteriormente
-                             total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
-                             rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
-                             firstSolution = head (solve m3 2 (Box x y 1) rest total)  --a partir de la primera matriz de soluciones del hidato mando a obtener una plantilla
-                             matrix = putObstInEmptySpaces firstSolution  
-                         in  matrix --(x,y) total-- que tenga solucion unica para devolverla directamente desde aqui
-
-putEmptySpaces1::Matrix->Int-> Matrix    --convertir todas las posiciones que tienen numeros diferentes del primero y el ultimo en 0 dejando los obstaculos
-putEmptySpaces1 m total = addManyBoxes [ (x,y,0) | (Box x y _ ) <- (getNumbersBoxes m total)] m
-
-addValues1::Matrix->Matrix->Int->Matrix  --se le pasa la matrix solucion, la plantilla que se tiene hasta el momento, la cantidad de cuadraditos a poner y se devuelve la matriz plantilla con estos puestos
-addValues1 _ mTemp 0 = mTemp
-addValues1 mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las posiciones vacias en temp
-                                   rand = getRandomNumber 0 (length empties -1) --tomo un random entre 0 y la cantidad de casillas que puedo rellenar
-                                   (Box x y _ ) = empties !! rand --obtengo la fila y la columna indexando con el random en la lista de casillas que puedo rellenar
-                                   (Box _ _ value ) = (getBoxFilCol mFull x y)!!0 --obtengo el valor que tiene la casilla seleccionada en la matrix llena
-                                   mTempNew = addBox x y value mTemp --agrego el valor obtenido a la plantilla que estoy creando
-                               in addValues mFull mTempNew (count-1)
 
 --Tipo debuggeo
 --mTemp = putEmptySpaces mFull total
@@ -131,12 +105,6 @@ addValues1 mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las 
 --makeUniqueHidato mFull mTemp frst total
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
 
 
 
