@@ -77,13 +77,13 @@ makeUniqueHidato mFull mTemp firstp total | isUnique mTemp firstp total = mTemp 
 
 getUniqueSolve:: Matrix -> (Int,Int) ->Int-> Matrix  --devuelve una plantilla de hidato correcta a partir de una solucion
 getUniqueSolve mFull firstp total = let m = putEmptySpaces mFull total
-                                        mTemp = addValues mFull m (total `div` 2) --annade el 33% de casillas, como restricciones, del total
+                                        mTemp = addValues mFull m (total `div` 3) --annade el 33% de casillas, como restricciones, del total
                                     in makeUniqueHidato mFull mTemp firstp total
 
 generate::Int->Int->Matrix --se le pasa la cantidad de filas y de columnas  
 generate rows cols = let m = createMatrix rows cols  --creo la matriz como lista de listas
                          (x,y) = getFirstPosition rows cols  --obtener la posicion del numero 1
-                         obst = (rows*cols)`div`4  --se crean un 33% de obstaculos
+                         obst = (rows*cols)`div`3  --se crean un 33% de obstaculos
                          m3 = addBox x y 1 m     --agrego el 1 en la posicion seleccionada anteriormente
                          total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
                          rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
