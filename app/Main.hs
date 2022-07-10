@@ -4,15 +4,15 @@ import System.IO
 -- import PdePreludat
 
 import Data.List
-
+-- :set -package containers
 import Data.Map (Map)
 import qualified Data.Map as Map
 
 import Data.Set (Set, lookupMin, lookupMax)
 import qualified Data.Set as Set
 
--- import Control.Lens
 
+-- :set -package random 
 import System.Random
 import System.IO.Unsafe
 
@@ -42,47 +42,48 @@ some a = do putStrLn (a ++ "\n" ++ "aaaaa")
 createMatrix::Int->Int->Matrix   --se le pasan la cantidad de filas y de columnas y se genera una matrix con esas dimensiones y 0 en todas las posiciones
 createMatrix rows cols = transformMatrix [[0 | x <- [1..cols]] | y <- [1..rows]]
 
-getFirstPosition::Int->Int->(Int,Int)
+getFirstPosition::Int->Int->(Int,Int)--devuelve una fila y columna random dentro de los limites de la matrix
 getFirstPosition rows cols = (getRandomNumber 0 (rows-1) , getRandomNumber 0 (cols-1))
 
 getNumbersBoxes :: Matrix ->Int-> [Box] --se obtienen todos los boxes que tengan numeros distintos de -1, -1 y el maximo 
 getNumbersBoxes m total = (Set.toList $ Set.filter (\box -> (value box /= -1 && value box /= 1 && value box /= total)) $ matrix m)
 
-putEmptySpaces::Matrix->Int-> Matrix    --convertir todas las posiciones que tienen numeros diferentes del primero y el ultimo en 0
+putEmptySpaces::Matrix->Int-> Matrix    --convertir todas las posiciones que tienen numeros diferentes del primero y el ultimo en 0 dejando los obstaculos
 putEmptySpaces m total = addManyBoxes [ (x,y,0) | (Box x y _ ) <- (getNumbersBoxes m total)] m
 
 putObstInEmptySpaces::Matrix-> Matrix    --convertir todas las posiciones que quedaron vacias en obstaculos
 putObstInEmptySpaces m = addManyBoxes [ (x,y,-1) | (Box x y _ ) <- (getEmptyBoxes m)] m
 
+getBoxFilCol :: Matrix ->Int->Int-> [Box]----------------se obtiene una lista con un solo box que tiene la fila columna y valor de una matrix segun la fila y columna que se pase
+getBoxFilCol m r c= (Set.toList $ Set.filter (\box -> row box == r && col box == c) $ matrix m)
+
 isUnique::Matrix->(Int,Int)->Int->Bool  --verifica que el hidato tenga solucion unica a partir del solucionador
 isUnique m (x,y) total = length (solve m 2 (Box x y 1) (makeRestrictions m) total) == 1
 
-getBoxFilCol :: Matrix ->Int->Int-> [Box]----------------------------------------------------------------------------------------------------
-getBoxFilCol m r c= (Set.toList $ Set.filter (\box -> row box == r && col box == c) $ matrix m)
+--funcion que se le pasa una lista con todas las posibles posiciones en las que se puede poner un numero y devuelve una lista con las que mas soluciones descartan 
 
 addValues::Matrix->Matrix->Int->Matrix  --se le pasa la matrix solucion, la plantilla que se tiene hasta el momento, la cantidad de cuadraditos a poner y se devuelve la matriz plantilla con estos puestos
 addValues _ mTemp 0 = mTemp
-addValues mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las posiciones vac'ias en temp
-                                  rand = getRandomNumber 0 (length empties) --
-                                  (Box x y _ ) = empties !! rand
-                                  (Box _ _ value ) = (getBoxFilCol mFull x y)!!0
-                                  mTempNew = addBox x y value mTemp
+addValues mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las posiciones vacias en temp
+                                  rand = getRandomNumber 0 (length empties -1) --tomo un random entre 0 y la cantidad de casillas que puedo rellenar
+                                  (Box x y _ ) = empties !! rand --obtengo la fila y la columna indexando con el random en la lista de casillas que puedo rellenar
+                                  (Box _ _ value ) = (getBoxFilCol mFull x y)!!0 --obtengo el valor que tiene la casilla seleccionada en la matrix llena
+                                  mTempNew = addBox x y value mTemp --agrego el valor obtenido a la plantilla que estoy creando-
                               in addValues mFull mTempNew (count-1)
 
 makeUniqueHidato:: Matrix -> Matrix -> (Int,Int) ->Int-> Matrix  --se va creando una plantilla de hidato con solucion unica
 makeUniqueHidato mFull mTemp firstp total | isUnique mTemp firstp total = mTemp --si ya es unica esta solucion se devuelve
-                                | otherwise = makeUniqueHidato (addValues mFull mTemp (total `div` 25 + 1)) mTemp firstp total --en caso de no ser unica se agrega un 4% casillas del total y se suma 1 para que en casos pequennos sea 1 lo que se annada
+                                | otherwise = makeUniqueHidato mFull (addValues mFull mTemp (((length(getEmptyBoxes mTemp)) `div` 10) + 1)) firstp total --en caso de no ser unica se agrega un 5% casillas que quedan vacias y se suma 1 para que en casos pequennos sea 1 lo que se annada
 
 getUniqueSolve:: Matrix -> (Int,Int) ->Int-> Matrix  --devuelve una plantilla de hidato correcta a partir de una solucion
 getUniqueSolve mFull firstp total = let m = putEmptySpaces mFull total
-                                        mTemp = addValues mFull m (total `div` 2) --annade la mitad de casillas, como restricciones, del total
+                                        mTemp = addValues mFull m (total `div` 2) --annade el 33% de casillas, como restricciones, del total
                                     in makeUniqueHidato mFull mTemp firstp total
-
 
 generate::Int->Int->Matrix --se le pasa la cantidad de filas y de columnas  
 generate rows cols = let m = createMatrix rows cols  --creo la matriz como lista de listas
                          (x,y) = getFirstPosition rows cols  --obtener la posicion del numero 1
-                         obst = rows*cols`div`4  --se crean un 20% de obstaculos
+                         obst = (rows*cols)`div`4  --se crean un 33% de obstaculos
                          m3 = addBox x y 1 m     --agrego el 1 en la posicion seleccionada anteriormente
                          total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
                          rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
@@ -90,9 +91,53 @@ generate rows cols = let m = createMatrix rows cols  --creo la matriz como lista
                          matrix = putObstInEmptySpaces firstSolution  
                      in getUniqueSolve matrix (x,y) total-- que tenga solucion unica para devolverla directamente desde aqui
 
-                                                                                      
-
+                                        
 -------------------------------------------------------GENERADOR-FIN--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------PROBAR-PARTES-DEL-GENERADOR-------------------------------------------------------------------------------------------------
+
+
+generateTemp::Int->Int->Matrix --se le pasa la cantidad de filas y de columnas  
+generateTemp rows cols = let m = createMatrix rows cols  --creo la matriz como lista de listas
+                             (x,y) = getFirstPosition rows cols  --obtener la posicion del numero 1
+                             obst = (rows*cols)`div`4  --se crean un 20% de obstaculos
+                             m3 = addBox x y 1 m     --agrego el 1 en la posicion seleccionada anteriormente
+                             total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
+                             rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
+                             firstSolution = head (solve m3 2 (Box x y 1) rest total)  --a partir de la primera matriz de soluciones del hidato mando a obtener una plantilla
+                             matrix = putObstInEmptySpaces firstSolution  
+                         in  matrix --(x,y) total-- que tenga solucion unica para devolverla directamente desde aqui
+
+putEmptySpaces1::Matrix->Int-> Matrix    --convertir todas las posiciones que tienen numeros diferentes del primero y el ultimo en 0 dejando los obstaculos
+putEmptySpaces1 m total = addManyBoxes [ (x,y,0) | (Box x y _ ) <- (getNumbersBoxes m total)] m
+
+addValues1::Matrix->Matrix->Int->Matrix  --se le pasa la matrix solucion, la plantilla que se tiene hasta el momento, la cantidad de cuadraditos a poner y se devuelve la matriz plantilla con estos puestos
+addValues1 _ mTemp 0 = mTemp
+addValues1 mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las posiciones vacias en temp
+                                   rand = getRandomNumber 0 (length empties -1) --tomo un random entre 0 y la cantidad de casillas que puedo rellenar
+                                   (Box x y _ ) = empties !! rand --obtengo la fila y la columna indexando con el random en la lista de casillas que puedo rellenar
+                                   (Box _ _ value ) = (getBoxFilCol mFull x y)!!0 --obtengo el valor que tiene la casilla seleccionada en la matrix llena
+                                   mTempNew = addBox x y value mTemp --agrego el valor obtenido a la plantilla que estoy creando
+                               in addValues mFull mTempNew (count-1)
+
+--Tipo debuggeo
+--mTemp = putEmptySpaces mFull total
+--mTemp = addValues mFull m (total `div` 2) --annade la mitad de casillas, como restricciones, del total
+--mTemp= addValues mFull m (((length(getEmptyBoxes m)) `div` 20) + 1)
+--isUnique mTemp frts total
+--makeUniqueHidato mFull mTemp frst total
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 ma :: [[Int]]
