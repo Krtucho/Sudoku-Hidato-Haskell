@@ -1,5 +1,5 @@
 module Main where
-import Lib
+-- import Lib
 import System.IO
 -- import PdePreludat
 
@@ -17,10 +17,10 @@ import System.Random
 import System.IO.Unsafe
 
 main :: IO ()
-main = do putStr "What is your first name? "
+main = do putStrLn "Welcome to our Sudoku-Hidato solver and generator....Type help :) \n"
 
-some :: String -> IO ()
-some a = do putStrLn (a ++ "\n" ++ "aaaaa")
+-- some :: String -> IO ()
+-- some a = do putStrLn (a ++ "\n" ++ "aaaaa")
                 -- first <- getLine
                 -- putStr "And your last name? "
 -- foo :: Maybe String
@@ -132,19 +132,6 @@ addValues1 mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-ma :: [[Int]]
-ma = [      [-1, 5, 0, -1],
-            [-1,0, 3, -1],
-            [-1, 1, 0, -1]
-            ]
-
--- printMatrix [a] = putStrLn a
--- printMatrix (x:xs) = do putStrLn x
---                         printMatrix xs
-
--- maxr = 2
--- maxc = 3
-
 dir = [(-1,-1),(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1)]
 
 findAdjacents (r,c)= [(r + fst x, c + snd x) | x <- dir]
@@ -165,6 +152,9 @@ solve m step pos restrictions total | step == total + 1 = [m]
                             --  |  step == total = m
                               | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos)) (rows m, cols m)) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs]
 
+-- Data Structures
+
+--Box
 data Box = Box {
     row::Int,
     col::Int,
@@ -184,6 +174,7 @@ instance Ord Box where
             | row b1 == row b2 = compare (col b1) (col b2)
             | col b1 == col b2 = EQ
 
+-- Matrix
 data Matrix = Matrix {
     rows :: Int,
     cols :: Int,
@@ -194,16 +185,11 @@ instance Show Matrix where
     show m = "\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getRows maxr m)) ++ "\n\t\t}" 
                 where maxr = row (getMax m)
 
--- temp = Matrix{
---     matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
--- } 
-
-
--- addBox m val = Matrix { matrix = Set.insert (Box {row = 0, col = 1, value = val}) $ matrix m }
-
-
-
-findBox x y m = Set.member Box{row=x, col=y, value=0} $ matrix m
+singletonMatrix rows cols = Matrix{
+    rows=rows,
+    cols=cols,
+    matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
+} 
 
 addBox :: Int -> Int -> Int -> Matrix -> Matrix
 addBox x y val m = Matrix { rows=rows m, cols=cols m, matrix = Set.insert (Box {row = x, col = y, value = val}) $ matrix m }
@@ -215,23 +201,6 @@ addManyBoxes [] m = m
 addManyBoxes [x] m = let (r,c,val) = x in addBox r c val m
 addManyBoxes (x:xs) m = let (r,c,val) = x in addManyBoxes xs (addBox r c val m) 
 
--- xxs = [[1,3,5,2,3,1,2,4,5],[1,2,3,4,5,6,7,8,9],[1,2,4,2,1,6,3,1,3,2,3,6]]
-
--- listTraversal (x:xs) = zip xxs [0..2]-- [ zip(x,y) | x <- xs, y<- [1..3]]
--- -- listValues (x:xs)
--- -- convertMatrix m = 
-
--- -- dfs (x, y) (x, y) h = (True, h)
--- test [x] = let (a,b,c) = x
---                 in show (a,b,c)
--- test (x:xs) = let (a,b,c) = x
---                 in show (a,b,c) ++ test xs
-
-singletonMatrix rows cols = Matrix{
-    rows=rows,
-    cols=cols,
-    matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
-} 
 
 mapMatrix m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr-1], y <- [0..maxc-1]]
 
@@ -249,24 +218,16 @@ canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m))
 makeRestrictions :: Matrix -> Map Int Box
 makeRestrictions m = Map.fromList (map (\x-> (value x, x)) (Set.toList $ Set.filter (\box -> value box > 0) $ matrix m))
 
--- restrictions = makeRestrictions temp
-
 findBorders :: [[Int]] -> (Int, Int)
 findBorders m = let maxr = length m
                 in if maxr > 0 then (maxr, length (m!!0)) else (maxr, 0)
 
-
--- nextStep temp 2 (Box 2 1 1) (getAdj (2,1,2)) restrictions
 solveHidato :: [[Int]] -> (Int, Int, Int) -> Int -> [Matrix]
 solveHidato m pos total = let m_tr = transformMatrix m
                               restrictions = (makeRestrictions m_tr)
                        in solve m_tr 2 (Box x y z) restrictions total
                       where (maxr,maxc) = findBorders m
                             (x, y, z) = pos
-
--- shuffle' :: [Int] -> [a] -> [a]
--- shuffle' (i:is) xs = let (firsts, rest) = splitAt (i `mod` length xs) xs
---                      in (head rest) : shuffle' is (firsts ++ tail rest)
 
 getRandomNumber :: Int -> Int -> Int
 getRandomNumber a b = unsafePerformIO (randomRIO (a, b) :: IO Int)
@@ -281,7 +242,6 @@ unorderList xs = shuffle' xs (len-1) (map (\x -> getRandomNumber 0 len) [1..len]
                     where len = length xs
 
 shuffle' :: [a] -> Int -> [Int] -> [a] 
--- shuffle' xs 0 rpl = 
 shuffle' xs index rpl | index == 0 = replaceLst (rpl!!0) xs
                       | otherwise = shuffle' (replaceLst (rpl!!index) xs) (index-1) rpl
 
@@ -290,7 +250,6 @@ getEmptyBoxes m = (Set.toList $ Set.filter (\box -> value box == 0) $ matrix m)
 
 getObstacles :: Matrix -> [Box]
 getObstacles m = (Set.toList $ Set.filter (\box -> value box == -1) $ matrix m)
-
 
 getRow index m = Set.toList $ Set.filter (\x -> (row x) == index) $ m
 printRow row = (map (\x -> value x) row)
@@ -315,9 +274,6 @@ printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> sho
 -- Muestra los comandos disponibles
 help :: IO()
 help = do putStrLn "Comandos \n\t\tResolver un Hidato \n\tsolveHidato <hidato> <pos_inicial> <max_value>\n\n\t    <hidato>: debe ser una lista de listas que tenga este formato: [[Int]]\n\t    <pos_inicial>: debe de ser donde se encuentra el valor 1 en el Hidato con el siguiente formato (row,col,val), donde val tiene que ser igual a 1\n\t    <max_value>: Valor maximo que se encuentra en Hidato\n\tEjemplo:\n\tghci>m=[[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]\n\tghci>solveHidato m (1,0,1) 14\n\t"
-
--- :: String -> IO ()
--- some a = do putStrLn (a ++ "\n" ++ "aaaaa")
 
 -- (4,6) (3,4) [[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]]
 --test 1
