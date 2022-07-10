@@ -12,7 +12,29 @@ import System.IO.Unsafe
 main :: IO ()
 main = do putStrLn "Welcome to our Sudoku-Hidato solver and generator....Type help :) \n"
 
--------------------------------------------------------GENERADOR------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------Generador--------------------------------------------------------------------------------------------------
+makeUniqueHidato:: Matrix -> Matrix -> (Int,Int) ->Int-> Matrix  --se va creando una plantilla de hidato con solucion unica
+makeUniqueHidato mFull mTemp firstp total | isUnique mTemp firstp total = mTemp --si ya es unica esta solucion se devuelve
+                                | otherwise = makeUniqueHidato mFull (addValues mFull mTemp (((length(getEmptyBoxes mTemp)) div 10) + 1)) firstp total --en caso de no ser unica se agrega un 5% casillas que quedan vacias y se suma 1 para que en casos pequennos sea 1 lo que se annada
+
+getUniqueSolve:: Matrix -> (Int,Int) ->Int-> Matrix  --devuelve una plantilla de hidato correcta a partir de una solucion
+getUniqueSolve mFull firstp total = let m = putEmptySpaces mFull total
+                                        mTemp = addValues mFull m (total div 3) --annade el 33% de casillas, como restricciones, del total
+                                    in makeUniqueHidato mFull mTemp firstp total
+
+generate::Int->Int->Matrix --se le pasa la cantidad de filas y de columnas  
+generate rows cols = let m = createMatrix rows cols  --creo la matriz como lista de listas
+                         (x,y) = getFirstPosition rows cols  --obtener la posicion del numero 1
+                         obst = (rows*cols)`div`3  --se crean un 33% de obstaculos
+                         m3 = addBox x y 1 m     --agrego el 1 en la posicion seleccionada anteriormente
+                         total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
+                         rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
+                         firstSolution = head (solve m3 2 (Box x y 1) rest total)  --a partir de la primera matriz de soluciones del hidato mando a obtener una plantilla
+                         matrix = putObstInEmptySpaces firstSolution  
+                     in getUniqueSolve matrix (x,y) total-- que tenga solucion unica para devolverla directamente desde aqui
+
+-------------------------------------------------------------------------------Generador-------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------Generador Utils----------------------------------------------------------------------------------------------
 
 createMatrix::Int->Int->Matrix   --se le pasan la cantidad de filas y de columnas y se genera una matrix con esas dimensiones y 0 en todas las posiciones
 createMatrix rows cols = transformMatrix [[0 | x <- [1..cols]] | y <- [1..rows]]
@@ -35,7 +57,6 @@ getBoxFilCol m r c= (Set.toList $ Set.filter (\box -> row box == r && col box ==
 isUnique::Matrix->(Int,Int)->Int->Bool  --verifica que el hidato tenga solucion unica a partir del solucionador
 isUnique m (x,y) total = length (solve m 2 (Box x y 1) (makeRestrictions m) total) == 1
 
---funcion que se le pasa una lista con todas las posibles posiciones en las que se puede poner un numero y devuelve una lista con las que mas soluciones descartan 
 
 addValues::Matrix->Matrix->Int->Matrix  --se le pasa la matrix solucion, la plantilla que se tiene hasta el momento, la cantidad de cuadraditos a poner y se devuelve la matriz plantilla con estos puestos
 addValues _ mTemp 0 = mTemp
@@ -45,67 +66,19 @@ addValues mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las p
                                   (Box _ _ value ) = (getBoxFilCol mFull x y)!!0 --obtengo el valor que tiene la casilla seleccionada en la matrix llena
                                   mTempNew = addBox x y value mTemp --agrego el valor obtenido a la plantilla que estoy creando-
                               in addValues mFull mTempNew (count-1)
-
-makeUniqueHidato:: Matrix -> Matrix -> (Int,Int) ->Int-> Matrix  --se va creando una plantilla de hidato con solucion unica
-makeUniqueHidato mFull mTemp firstp total | isUnique mTemp firstp total = mTemp --si ya es unica esta solucion se devuelve
-                                | otherwise = makeUniqueHidato mFull (addValues mFull mTemp (((length(getEmptyBoxes mTemp)) `div` 10) + 1)) firstp total --en caso de no ser unica se agrega un 5% casillas que quedan vacias y se suma 1 para que en casos pequennos sea 1 lo que se annada
-
-getUniqueSolve:: Matrix -> (Int,Int) ->Int-> Matrix  --devuelve una plantilla de hidato correcta a partir de una solucion
-getUniqueSolve mFull firstp total = let m = putEmptySpaces mFull total
-                                        mTemp = addValues mFull m (total `div` 3) --annade el 33% de casillas, como restricciones, del total
-                                    in makeUniqueHidato mFull mTemp firstp total
-
-generate::Int->Int->Matrix --se le pasa la cantidad de filas y de columnas  
-generate rows cols = let m = createMatrix rows cols  --creo la matriz como lista de listas
-                         (x,y) = getFirstPosition rows cols  --obtener la posicion del numero 1
-                         obst = (rows*cols)`div`3  --se crean un 33% de obstaculos
-                         m3 = addBox x y 1 m     --agrego el 1 en la posicion seleccionada anteriormente
-                         total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
-                         rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
-                         firstSolution = head (solve m3 2 (Box x y 1) rest total)  --a partir de la primera matriz de soluciones del hidato mando a obtener una plantilla
-                         matrix = putObstInEmptySpaces firstSolution  
-                     in getUniqueSolve matrix (x,y) total-- que tenga solucion unica para devolverla directamente desde aqui
-
                                         
--------------------------------------------------------GENERADOR-FIN--------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------Generador Utils------------------------------------------------------------------------------------------------
 
 
-
---------------------------------------------------------PROBAR-PARTES-DEL-GENERADOR-------------------------------------------------------------------------------------------------
-
-
-generateTemp::Int->Int->Matrix --se le pasa la cantidad de filas y de columnas  
-generateTemp rows cols = let m = createMatrix rows cols  --creo la matriz como lista de listas
-                             (x,y) = getFirstPosition rows cols  --obtener la posicion del numero 1
-                             obst = (rows*cols)`div`4  --se crean un 20% de obstaculos
-                             m3 = addBox x y 1 m     --agrego el 1 en la posicion seleccionada anteriormente
-                             total = rows*cols-obst   --las casillas a llenar son la cantidad de casillas menos la cantidad de obstaculos
-                             rest = makeRestrictions m3   --se agrega el 1 a las restricciones, las restricciones son las casillas que ya tenian numero puesto
-                             firstSolution = head (solve m3 2 (Box x y 1) rest total)  --a partir de la primera matriz de soluciones del hidato mando a obtener una plantilla
-                             matrix = putObstInEmptySpaces firstSolution  
-                         in  matrix --(x,y) total-- que tenga solucion unica para devolverla directamente desde aqui
-
-putEmptySpaces1::Matrix->Int-> Matrix    --convertir todas las posiciones que tienen numeros diferentes del primero y el ultimo en 0 dejando los obstaculos
-putEmptySpaces1 m total = addManyBoxes [ (x,y,0) | (Box x y _ ) <- (getNumbersBoxes m total)] m
-
-addValues1::Matrix->Matrix->Int->Matrix  --se le pasa la matrix solucion, la plantilla que se tiene hasta el momento, la cantidad de cuadraditos a poner y se devuelve la matriz plantilla con estos puestos
-addValues1 _ mTemp 0 = mTemp
-addValues1 mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las posiciones vacias en temp
-                                   rand = getRandomNumber 0 (length empties -1) --tomo un random entre 0 y la cantidad de casillas que puedo rellenar
-                                   (Box x y _ ) = empties !! rand --obtengo la fila y la columna indexando con el random en la lista de casillas que puedo rellenar
-                                   (Box _ _ value ) = (getBoxFilCol mFull x y)!!0 --obtengo el valor que tiene la casilla seleccionada en la matrix llena
-                                   mTempNew = addBox x y value mTemp --agrego el valor obtenido a la plantilla que estoy creando
-                               in addValues mFull mTempNew (count-1)
+---------------------------------------------------------------------------Test Generador-------------------------------------------------------------------------------------------------
 
 --Tipo debuggeo
 --mTemp = putEmptySpaces mFull total
---mTemp = addValues mFull m (total `div` 2) --annade la mitad de casillas, como restricciones, del total
---mTemp= addValues mFull m (((length(getEmptyBoxes m)) `div` 20) + 1)
+--mTemp = addValues mFull m (total div 2) --annade la mitad de casillas, como restricciones, del total
+--mTemp= addValues mFull m (((length(getEmptyBoxes m)) div 20) + 1)
 --isUnique mTemp frts total
 --makeUniqueHidato mFull mTemp frst total
----------------------------------------------------------------------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------Test Generador-------------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------- Data Structures ----------------------------------------------------------------------
 
