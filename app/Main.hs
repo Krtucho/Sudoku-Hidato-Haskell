@@ -184,6 +184,7 @@ transformMatrix m_in = addManyBoxes (mapMatrix m_in (length m_in) (length (m_in!
 getAdj :: (Int, Int, Int) -> (Int, Int) -> [Box]
 getAdj (r,c, v) (maxr, maxc) = [Box nr nc v| adj <- findAdjacents (r,c), let (nr, nc) = adj, nr >= 0, nc >= 0, nr < maxr, nc < maxc]
 
+canSetInAdj :: (Int,Int) -> Matrix -> Bool
 canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m)) (matrix m) in (value box) == 0 = True
                     | otherwise = False
 
@@ -246,6 +247,17 @@ printMatrix :: [[Int]] -> IO ()
 printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getMatrixRows maxr m)) ++ "\n\t\t}")
                 where maxr = (length m) - 1
 
+-- random_obstaculos :: Int -> Int
+-- random_obstaculos = getRandomNumber 1 3
+
+-- loadHidato :: String -> [[Int]]
+-- loadHidato file_path = do text <- readFile file_path 
+--                           return read text::[[Int]]
+
+-- Muestra los comandos disponibles
+help :: IO()
+help = do putStrLn "Comandos \n\t\tResolver un Hidato \n\tsolveHidato <hidato> <pos_inicial> <max_value>\n\n\t    <hidato>: debe ser una lista de listas que tenga este formato: [[Int]]\n\t    <pos_inicial>: debe de ser donde se encuentra el valor 1 en el Hidato con el siguiente formato (row,col,val), donde val tiene que ser igual a 1\n\t    <max_value>: Valor maximo que se encuentra en Hidato\n\tEjemplo:\n\tghci>m=[[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]\n\tghci>solveHidato m (1,0,1) 14\n\t"
+
 -- :: String -> IO ()
 -- some a = do putStrLn (a ++ "\n" ++ "aaaaa")
 
@@ -257,3 +269,7 @@ test1 = [[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,2
 -- (1,0) (3,1) [[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]
 test2 :: [[Int]]
 test2 = [[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]
+
+-- (0,7) (5,0) [[-1,-1,-1,-1,-1,-1,0,1,-1,-1],[0,0,-1,-1,4,0,0,38,0,35],[73,0,75,0,0,41,0,0,34,0],[0,78,0,0,6,0,8,0,31,0],[0,0,68,0,0,0,44,0,0,32],[80,50,64,0,0,0,11,21,0,0],[0,51,49,0,47,0,0,20,23,0],[53,0,0,48,14,16,18,0,27,0],[55,0,0,58,0,0,-1,-1,25,0],[-1,-1,57,59,-1,-1,-1,-1,-1,-1]]
+test3 :: [[Int]]
+test3 = [[-1,-1,-1,-1,-1,-1,0,1,-1,-1],[0,0,-1,-1,4,0,0,38,0,35],[73,0,75,0,0,41,0,0,34,0],[0,78,0,0,6,0,8,0,31,0],[0,0,68,0,0,0,44,0,0,32],[80,50,64,0,0,0,11,21,0,0],[0,51,49,0,47,0,0,20,23,0],[53,0,0,48,14,16,18,0,27,0],[55,0,0,58,0,0,-1,-1,25,0],[-1,-1,57,59,-1,-1,-1,-1,-1,-1]]
