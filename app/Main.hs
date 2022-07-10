@@ -15,11 +15,11 @@ main = do putStrLn "Welcome to our Sudoku-Hidato solver and generator....Type he
 -------------------------------------------------------------------------------Generador--------------------------------------------------------------------------------------------------
 makeUniqueHidato:: Matrix -> Matrix -> (Int,Int) ->Int-> Matrix  --se va creando una plantilla de hidato con solucion unica
 makeUniqueHidato mFull mTemp firstp total | isUnique mTemp firstp total = mTemp --si ya es unica esta solucion se devuelve
-                                | otherwise = makeUniqueHidato mFull (addValues mFull mTemp (((length(getEmptyBoxes mTemp)) div 10) + 1)) firstp total --en caso de no ser unica se agrega un 5% casillas que quedan vacias y se suma 1 para que en casos pequennos sea 1 lo que se annada
+                                | otherwise = makeUniqueHidato mFull (addValues mFull mTemp (((length(getEmptyBoxes mTemp)) `div` 10) + 1)) firstp total --en caso de no ser unica se agrega un 5% casillas que quedan vacias y se suma 1 para que en casos pequennos sea 1 lo que se annada
 
 getUniqueSolve:: Matrix -> (Int,Int) ->Int-> Matrix  --devuelve una plantilla de hidato correcta a partir de una solucion
 getUniqueSolve mFull firstp total = let m = putEmptySpaces mFull total
-                                        mTemp = addValues mFull m (total div 3) --annade el 33% de casillas, como restricciones, del total
+                                        mTemp = addValues mFull m (total `div` 3) --annade el 33% de casillas, como restricciones, del total
                                     in makeUniqueHidato mFull mTemp firstp total
 
 generate::Int->Int->Matrix --se le pasa la cantidad de filas y de columnas  
@@ -233,13 +233,20 @@ getMax m = let Just val = Set.lookupMax (matrix m)
             in val
 
 -- Obtiene las filas de una (lista de listas [[Int]]) m con cantidad maxima de filas para indexar maxr
-getMatrixRows :: Int -> [[Int]] -> [Int]
+-- getMatrixRows :: Int -> [[Int]] -> [Int]
 getMatrixRows maxr m = (map (\x -> m!!x) [0..maxr])
 
 -- Printea una lista de listas [[Int]]
 printMatrix :: [[Int]] -> IO ()
 printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getMatrixRows maxr m)) ++ "\n\t\t}")
                 where maxr = (length m) - 1
+
+printMatrices :: [[[Int]]] -> IO()
+printMatrices lst = do putStrLn (intercalate "\n\t" (getMatrixStrings lst))
+
+getMatrixString m = ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getMatrixRows maxr m)) ++ "\n\t\t}")
+                where maxr = (length m) - 1
+getMatrixStrings xs = map (\x -> getMatrixString x) xs
 
 ------------------------------------------------------------------- Utils ------------------------------------------------------------------------
 
