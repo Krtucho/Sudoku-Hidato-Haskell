@@ -148,15 +148,14 @@ singletonMatrix rows cols = Matrix{
     matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
 } 
 
------------------------- Data Structures
+------------------------------------------------------------------ Data Structures ---------------------------------------------------------------
 
 ------------------------------------------------------------------ Data Structures Utils ---------------------------------------------------------
---
+-- Agrega un elemento a la matrix de una Matrix. Se le pasan 4 valores, x=row y=col val=value y m = Matrix
 addBox :: Int -> Int -> Int -> Matrix -> Matrix
 addBox x y val m = Matrix { rows=rows m, cols=cols m, matrix = Set.insert (Box {row = x, col = y, value = val}) $ matrix m }
 
--- addB x y val m =  Set.insert (Box {row = x, col = y, value = val}) $ matrix m
-
+-- Dada una lista con un mapeo de una lista de listas [[Int]] y una matriz. Devuelve una matriz con todas esas posiciones
 addManyBoxes :: [(Int, Int, Int)] -> Matrix -> Matrix
 addManyBoxes [] m = m
 addManyBoxes [x] m = let (r,c,val) = x in addBox r c val m
@@ -166,6 +165,7 @@ addManyBoxes (x:xs) m = let (r,c,val) = x in addManyBoxes xs (addBox r c val m)
 mapMatrix :: [[Int]] -> Int -> Int -> [(Int, Int, Int)]
 mapMatrix m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr-1], y <- [0..maxc-1]]
 
+-- Dada una lista de listas devuelve una Matrix mapeando sus valores a tipo Box
 transformMatrix :: [[Int]] -> Matrix
 transformMatrix m_in = addManyBoxes (mapMatrix m_in (length m_in) (length (m_in!!0))) (singletonMatrix (length m_in) (length (m_in!!0)))
 
@@ -181,24 +181,28 @@ findAdjacents (r,c)= [(r + fst x, c + snd x) | x <- dir]
 getAdj :: (Int, Int, Int) -> (Int, Int) -> [Box]
 getAdj (r,c, v) (maxr, maxc) = [Box nr nc v| adj <- findAdjacents (r,c), let (nr, nc) = adj, nr >= 0, nc >= 0, nr < maxr, nc < maxc]
 
+-- Dada una posicion en una tupla (r,c) y una Matrix devuelve True si esa posicion se encuentra vacia
 canSetInAdj :: (Int,Int) -> Matrix -> Bool
 canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m)) (matrix m) in (value box) == 0 = True
                     | otherwise = False
 -- Dados 2 elementos de tipo Box, verifica si ambos son adyacentes
 isAdjacent :: Box -> Box -> Bool
 isAdjacent (Box r1 c1 _) (Box r2 c2 _) = abs (r1 - r2) < 2 && abs (c1 - c2) < 2
---
+
+-- Dada una Matrix devuelve un diccionario de (Int,Box) con todas las posiciones de la matriz que tengan valores mayores que 0
 makeRestrictions :: Matrix -> Map Int Box
 makeRestrictions m = Map.fromList (map (\x-> (value x, x)) (Set.toList $ Set.filter (\box -> value box > 0) $ matrix m))
 
+-- Dada una lista de listas [[Int]] devuelve una tupla con los valores maximos de su fila y columna
 findBorders :: [[Int]] -> (Int, Int)
 findBorders m = let maxr = length m
                 in if maxr > 0 then (maxr, length (m!!0)) else (maxr, 0)
 
+-- Dada una matriz devuelve una lista de Box con todos sus casillas vacias (casillas que tengan valor 0)
 getEmptyBoxes :: Matrix -> [Box]
 getEmptyBoxes m = (Set.toList $ Set.filter (\box -> value box == 0) $ matrix m)
 
--- Dada una matriz devuelve una
+-- Dada una matriz devuelve una lista de Box con todos sus obstaculos (casillas que tengan valor -1)
 getObstacles :: Matrix -> [Box]
 getObstacles m = (Set.toList $ Set.filter (\box -> value box == -1) $ matrix m)
 
