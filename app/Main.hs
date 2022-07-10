@@ -209,14 +209,19 @@ getObstacles m = (Set.toList $ Set.filter (\box -> value box == -1) $ matrix m)
 ------------------------------------------------------------------ Data Structures Utils ---------------------------------------------------------
 
 ------------------------------------------------------------------ Solucionador ------------------------------------------------------------------
+-- Dada una matriz de un Hidato en cierto estado, la ultima posicion por la que paso, el valor a ubicar actual, las casillas adyacentes a la posicion actual y los valores que se encuentran en la matriz que sean mayores que 0
+-- Ubica el valor en la posicion adyacente a la anterior y devuelve el tablero modificado
 nextStep :: Matrix -> Int -> Box -> [Box] -> Map Int Box -> [(Matrix, Box)]
-nextStep m step prevPos adjacents restrictions |Map.member step restrictions && isAdjacent (restrictions Map.! step) prevPos = [(m, restrictions Map.! step)]
-                                  | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = []--findValue step m && not valueIsOk step m = []
+nextStep m step prevPos adjacents restrictions |Map.member step restrictions && isAdjacent (restrictions Map.! step) prevPos = [(m, restrictions Map.! step)] -- Verificamos si el valor se encuentra en la matriz actual y de ser asi, revisamos que sea adyacente a la posicion en la cual nos encontramos actualmente, de cumplirse esto, devolvemos esta con la ultima posicion a la que nos movimos como la posicion del valor que ya se encontraba
+                                  | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = [] --  De no ser adyacente
                                   | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- unorderList adjacents, canSetInAdj (row x, col x) m]
--- total = 5
+
+-- Soluciona un Hidato comenzando por el numero que le pasemos a step y la posicion que le pasemos a la variable pos como posicion donde se ubico el numero anterior a step
+-- total sera el valor maximo que podemos ubicar en nuestro Hidato y restrictions sera el diccionario que nos permitira buscar las posiciones que contiene el tablero con valor mayor que 0
+-- Devolvemos todas las soluciones en una lista, de no ser posible encontrar alguna devolveremos una lista vacia
 solve :: Matrix -> Int -> Box -> Map Int Box -> Int -> [Matrix]
-solve m step pos restrictions total | step == total + 1 = [m]
-                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos)) (rows m, cols m)) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs]
+solve m step pos restrictions total | step == total + 1 = [m] -- caso base, si vamos a ubicar el numero total + 1, devolvemos el Hidato actual porque ya habriamos puesto el valor total, siendo este el maximo que se puede ubicar en nuestra matriz
+                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos)) (rows m, cols m)) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs] -- Buscamos por todas las posibles matrices que nos devuelve NextStep moviendonos en direcciones adyacentes a la posicion actual, todas las posibles soluciones que podamos obtener al llamar a solve con un nuevo Hidato modificado
 
 -- Metodo principal para resolver un Hidato
 -- Dada una lista de listas de enteros ([[Int]]), una posicion inicial y un valor maximo que contendra el Hidato lo soluciona y devuelve todas las soluciones posibles que encuentre 
@@ -239,6 +244,7 @@ replaceLst :: Int -> [a] -> [a]
 replaceLst x xs = let (a,b) = splitAt x xs
                  in (if length b > 0 then [head b] else []) ++(if length a > 0 then tail a else []) ++ (if length a > 0 then [head a] else [])++(if length b > 0 then tail b else [])
 
+-- Dada una lista, devuelva una lista nueva desordenada
 unorderList :: [a] -> [a]
 unorderList xs = shuffle' xs (len-1) (map (\x -> getRandomNumber 0 len) [1..len])
                     where len = length xs
@@ -253,9 +259,11 @@ getRows maxr m = map (\y -> printRow y) $ (map (\x -> getRow x (matrix m)) [0..m
 getMax m = let Just val = Set.lookupMax (matrix m)
             in val
 
-getMatrixRow index m = m!!index
+-- Obtiene las filas de una (lista de listas [[Int]]) m con cantidad maxima de filas para indexar maxr
+getMatrixRows :: Int -> [[Int]] -> [Int]
 getMatrixRows maxr m = (map (\x -> m!!x) [0..maxr])
 
+-- Printea una lista de listas [[Int]]
 printMatrix :: [[Int]] -> IO ()
 printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getMatrixRows maxr m)) ++ "\n\t\t}")
                 where maxr = (length m) - 1
@@ -276,10 +284,12 @@ test1 :: [[Int]]
 test1 = [[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]]
 
 -- (1,0) (3,1) [[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]
+--test 2
 test2 :: [[Int]]
 test2 = [[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]
 
 -- (0,7) (5,0) [[-1,-1,-1,-1,-1,-1,0,1,-1,-1],[0,0,-1,-1,4,0,0,38,0,35],[73,0,75,0,0,41,0,0,34,0],[0,78,0,0,6,0,8,0,31,0],[0,0,68,0,0,0,44,0,0,32],[80,50,64,0,0,0,11,21,0,0],[0,51,49,0,47,0,0,20,23,0],[53,0,0,48,14,16,18,0,27,0],[55,0,0,58,0,0,-1,-1,25,0],[-1,-1,57,59,-1,-1,-1,-1,-1,-1]]
+--test 3
 test3 :: [[Int]]
 test3 = [[-1,-1,-1,-1,-1,-1,0,1,-1,-1],[0,0,-1,-1,4,0,0,38,0,35],[73,0,75,0,0,41,0,0,34,0],[0,78,0,0,6,0,8,0,31,0],[0,0,68,0,0,0,44,0,0,32],[80,50,64,0,0,0,11,21,0,0],[0,51,49,0,47,0,0,20,23,0],[53,0,0,48,14,16,18,0,27,0],[55,0,0,58,0,0,-1,-1,25,0],[-1,-1,57,59,-1,-1,-1,-1,-1,-1]]
 
