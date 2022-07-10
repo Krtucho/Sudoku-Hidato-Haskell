@@ -1,41 +1,16 @@
 module Main where
--- import Lib
+
 import System.IO
--- import PdePreludat
-
 import Data.List
-
 import Data.Map (Map)
 import qualified Data.Map as Map
-
 import Data.Set (Set, lookupMin, lookupMax)
 import qualified Data.Set as Set
-
--- import Control.Lens
-
 import System.Random
 import System.IO.Unsafe
 
 main :: IO ()
 main = do putStrLn "Welcome to our Sudoku-Hidato solver and generator....Type help :) \n"
-
--- some :: String -> IO ()
--- some a = do putStrLn (a ++ "\n" ++ "aaaaa")
-                -- first <- getLine
-                -- putStr "And your last name? "
--- foo :: Maybe String
--- foo = do
---         x <- Just 3
---         y <- Just "!"
---         Just (show x ++ y)
-
--- someFunc
-
--- matrix = [  [-1, 5, 4],
---             [-1,-1, 3],
---             [-1, 1, 2]
---             ]
-
 
 -------------------------------------------------------GENERADOR------------------------------------------------------------------------------------
 
@@ -132,27 +107,7 @@ addValues1 mFull mTemp count = let empties = getEmptyBoxes mTemp --lista de las 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-dir = [(-1,-1),(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1)]
-
-findAdjacents (r,c)= [(r + fst x, c + snd x) | x <- dir]
-
--- validPos (x,y) = (x >= 0) && (y >= 0) && (x <= maxr) && (y <= maxc) && matrix !! x !! y >= 0
-
-isAdjacent :: Box -> Box -> Bool
-isAdjacent (Box r1 c1 _) (Box r2 c2 _) = abs (r1 - r2) < 2 && abs (c1 - c2) < 2
-
-nextStep :: Matrix -> Int -> Box -> [Box] -> Map Int Box -> [(Matrix, Box)]
-nextStep m step prevPos adjacents restrictions |Map.member step restrictions && isAdjacent (restrictions Map.! step) prevPos = [(m, restrictions Map.! step)]
-                                  | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = []--findValue step m && not valueIsOk step m = []
-                                  | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- unorderList adjacents, canSetInAdj (row x, col x) m]
--- total = 5
-solve :: Matrix -> Int -> Box -> Map Int Box -> Int -> [Matrix]
-solve m step pos restrictions total | step == total + 1 = [m]
-                            --  | step == total = m
-                            --  |  step == total = m
-                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos)) (rows m, cols m)) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs]
-
--- Data Structures
+------------------------------------------------------------------------- Data Structures ----------------------------------------------------------------------
 
 --Box
 data Box = Box {
@@ -160,14 +115,14 @@ data Box = Box {
     col::Int,
     value:: Int
 }
-
+-- Redefiniendo el Show
 instance Show Box where
     show box = "(" ++ show (row box) ++ "," ++ show (col box) ++ "," ++ show (value box) ++ ")"
-
+-- Permitiendo que pertenezca a Eq, comparamos por las filas y las columnas de un Box
 instance Eq Box where {
     b1 == b2 = row b1 == row b2 && col b1 == col b2
 }
-
+-- Permitiendo que pertenezca a Ord, comparamos por las filas y las columnas de un Box, el valor en si no nos interesa
 instance Ord Box where
     compare b1 b2
             | row b1 /= row b2 = compare (row b1) (row b2)
@@ -180,17 +135,23 @@ data Matrix = Matrix {
     cols :: Int,
     matrix :: Set Box                    
 }
-
+-- Redefiniendo el Show
 instance Show Matrix where
     show m = "\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getRows maxr m)) ++ "\n\t\t}" 
                 where maxr = row (getMax m)
 
+-- Crea una matriz que tendra la cantidad rows de filas y cols de columnas
+-- En un inicio tendra solamente 1 elemento (0,0,0) pero se utiliza luego para convertir una lista de listas [[Int]] en una Matrix
 singletonMatrix rows cols = Matrix{
     rows=rows,
     cols=cols,
     matrix = Set.singleton (Box {row = 0, col = 0, value = 0})
 } 
 
+------------------------ Data Structures
+
+------------------------------------------------------------------ Data Structures Utils ---------------------------------------------------------
+--
 addBox :: Int -> Int -> Int -> Matrix -> Matrix
 addBox x y val m = Matrix { rows=rows m, cols=cols m, matrix = Set.insert (Box {row = x, col = y, value = val}) $ matrix m }
 
@@ -201,20 +162,32 @@ addManyBoxes [] m = m
 addManyBoxes [x] m = let (r,c,val) = x in addBox r c val m
 addManyBoxes (x:xs) m = let (r,c,val) = x in addManyBoxes xs (addBox r c val m) 
 
-
+-- Dada lista de listas de enteros ([[Int]]) y unos limites de maxima cantidad de filas y maxima cantidad de columnas Devuelve una lista con una tupla de tres valores (row, col, val)
+mapMatrix :: [[Int]] -> Int -> Int -> [(Int, Int, Int)]
 mapMatrix m maxr maxc  = [(x,y, m!!x!!y) | x <- [0..maxr-1], y <- [0..maxc-1]]
 
 transformMatrix :: [[Int]] -> Matrix
 transformMatrix m_in = addManyBoxes (mapMatrix m_in (length m_in) (length (m_in!!0))) (singletonMatrix (length m_in) (length (m_in!!0)))
 
--- takeAdj (r,c) m = Set.filter (\(x) -> col x == c && row x == r ) $ matrix m--findAdjacents (r,c)
+--Valores a sumar en la fila y en la columna para las posibles direcciones que tomaremos al buscar los adyacentes
+dir = [(-1,-1),(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1)]
+
+-- Dada una posicion devuelve una lista con los valores a sumar para obtener sus adyacentes
+findAdjacents :: (Int, Int) -> [(Int, Int)]
+findAdjacents (r,c)= [(r + fst x, c + snd x) | x <- dir]
+
+-- Dada una posicion con un valor y los limites de una matriz devuelve una lista con posiciones adyacentes y el valor que se le paso
+-- Lista de tipo Box, es decir Box row col value
 getAdj :: (Int, Int, Int) -> (Int, Int) -> [Box]
 getAdj (r,c, v) (maxr, maxc) = [Box nr nc v| adj <- findAdjacents (r,c), let (nr, nc) = adj, nr >= 0, nc >= 0, nr < maxr, nc < maxc]
 
 canSetInAdj :: (Int,Int) -> Matrix -> Bool
 canSetInAdj (r,c) m |let box = Set.elemAt (Set.findIndex (Box r c 0) (matrix m)) (matrix m) in (value box) == 0 = True
                     | otherwise = False
-
+-- Dados 2 elementos de tipo Box, verifica si ambos son adyacentes
+isAdjacent :: Box -> Box -> Bool
+isAdjacent (Box r1 c1 _) (Box r2 c2 _) = abs (r1 - r2) < 2 && abs (c1 - c2) < 2
+--
 makeRestrictions :: Matrix -> Map Int Box
 makeRestrictions m = Map.fromList (map (\x-> (value x, x)) (Set.toList $ Set.filter (\box -> value box > 0) $ matrix m))
 
@@ -222,13 +195,38 @@ findBorders :: [[Int]] -> (Int, Int)
 findBorders m = let maxr = length m
                 in if maxr > 0 then (maxr, length (m!!0)) else (maxr, 0)
 
+getEmptyBoxes :: Matrix -> [Box]
+getEmptyBoxes m = (Set.toList $ Set.filter (\box -> value box == 0) $ matrix m)
+
+-- Dada una matriz devuelve una
+getObstacles :: Matrix -> [Box]
+getObstacles m = (Set.toList $ Set.filter (\box -> value box == -1) $ matrix m)
+
+------------------------------------------------------------------ Data Structures Utils ---------------------------------------------------------
+
+------------------------------------------------------------------ Solucionador ------------------------------------------------------------------
+nextStep :: Matrix -> Int -> Box -> [Box] -> Map Int Box -> [(Matrix, Box)]
+nextStep m step prevPos adjacents restrictions |Map.member step restrictions && isAdjacent (restrictions Map.! step) prevPos = [(m, restrictions Map.! step)]
+                                  | Map.member step restrictions && not (isAdjacent (restrictions Map.! step) prevPos) = []--findValue step m && not valueIsOk step m = []
+                                  | otherwise = [(addBox (row x) (col x) (step) m, x)| x <- unorderList adjacents, canSetInAdj (row x, col x) m]
+-- total = 5
+solve :: Matrix -> Int -> Box -> Map Int Box -> Int -> [Matrix]
+solve m step pos restrictions total | step == total + 1 = [m]
+                              | otherwise = let xs = nextStep m step pos (getAdj ((row pos), (col pos), (value pos)) (rows m, cols m)) restrictions in concat [solve matrix (step+1) box restrictions total| (matrix, box) <- xs]
+
+-- Metodo principal para resolver un Hidato
+-- Dada una lista de listas de enteros ([[Int]]), una posicion inicial y un valor maximo que contendra el Hidato lo soluciona y devuelve todas las soluciones posibles que encuentre 
 solveHidato :: [[Int]] -> (Int, Int, Int) -> Int -> [Matrix]
 solveHidato m pos total = let m_tr = transformMatrix m
                               restrictions = (makeRestrictions m_tr)
                        in solve m_tr 2 (Box x y z) restrictions total
                       where (maxr,maxc) = findBorders m
                             (x, y, z) = pos
+------------------------------------------------------------------ Solucionador ------------------------------------------------------------------
 
+------------------------------------------------------------------- Utils ------------------------------------------------------------------------
+
+-- Dados 2 valores a y b devuelve un numero aleatorio entre los mismos 
 getRandomNumber :: Int -> Int -> Int
 getRandomNumber a b = unsafePerformIO (randomRIO (a, b) :: IO Int)
 -- num = unsafePerformIO (randomRIO (0, 10) :: IO Int)
@@ -245,12 +243,6 @@ shuffle' :: [a] -> Int -> [Int] -> [a]
 shuffle' xs index rpl | index == 0 = replaceLst (rpl!!0) xs
                       | otherwise = shuffle' (replaceLst (rpl!!index) xs) (index-1) rpl
 
-getEmptyBoxes :: Matrix -> [Box]
-getEmptyBoxes m = (Set.toList $ Set.filter (\box -> value box == 0) $ matrix m)
-
-getObstacles :: Matrix -> [Box]
-getObstacles m = (Set.toList $ Set.filter (\box -> value box == -1) $ matrix m)
-
 getRow index m = Set.toList $ Set.filter (\x -> (row x) == index) $ m
 printRow row = (map (\x -> value x) row)
 getRows maxr m = map (\y -> printRow y) $ (map (\x -> getRow x (matrix m)) [0..maxr])
@@ -264,8 +256,7 @@ printMatrix :: [[Int]] -> IO ()
 printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> show x) (getMatrixRows maxr m)) ++ "\n\t\t}")
                 where maxr = (length m) - 1
 
--- random_obstaculos :: Int -> Int
--- random_obstaculos = getRandomNumber 1 3
+------------------------------------------------------------------- Utils ------------------------------------------------------------------------
 
 -- loadHidato :: String -> [[Int]]
 -- loadHidato file_path = do text <- readFile file_path 
@@ -275,6 +266,7 @@ printMatrix m = do putStrLn ("\n\t{\n \t" ++ intercalate "\n \t" (map (\x -> sho
 help :: IO()
 help = do putStrLn "Comandos \n\t\tResolver un Hidato \n\tsolveHidato <hidato> <pos_inicial> <max_value>\n\n\t    <hidato>: debe ser una lista de listas que tenga este formato: [[Int]]\n\t    <pos_inicial>: debe de ser donde se encuentra el valor 1 en el Hidato con el siguiente formato (row,col,val), donde val tiene que ser igual a 1\n\t    <max_value>: Valor maximo que se encuentra en Hidato\n\tEjemplo:\n\tghci>m=[[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]\n\tghci>solveHidato m (1,0,1) 14\n\t"
 
+----------------------------------------------------------------- Para testear ---------------------------------------------------------------
 -- (4,6) (3,4) [[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]]
 --test 1
 test1 :: [[Int]]
@@ -287,3 +279,5 @@ test2 = [[0,0,4,0],[1,0,0,-1],[-1,0,0,9],[0,14,0,0]]
 -- (0,7) (5,0) [[-1,-1,-1,-1,-1,-1,0,1,-1,-1],[0,0,-1,-1,4,0,0,38,0,35],[73,0,75,0,0,41,0,0,34,0],[0,78,0,0,6,0,8,0,31,0],[0,0,68,0,0,0,44,0,0,32],[80,50,64,0,0,0,11,21,0,0],[0,51,49,0,47,0,0,20,23,0],[53,0,0,48,14,16,18,0,27,0],[55,0,0,58,0,0,-1,-1,25,0],[-1,-1,57,59,-1,-1,-1,-1,-1,-1]]
 test3 :: [[Int]]
 test3 = [[-1,-1,-1,-1,-1,-1,0,1,-1,-1],[0,0,-1,-1,4,0,0,38,0,35],[73,0,75,0,0,41,0,0,34,0],[0,78,0,0,6,0,8,0,31,0],[0,0,68,0,0,0,44,0,0,32],[80,50,64,0,0,0,11,21,0,0],[0,51,49,0,47,0,0,20,23,0],[53,0,0,48,14,16,18,0,27,0],[55,0,0,58,0,0,-1,-1,25,0],[-1,-1,57,59,-1,-1,-1,-1,-1,-1]]
+
+----------------------------------------------------------------- Para testear ---------------------------------------------------------------
